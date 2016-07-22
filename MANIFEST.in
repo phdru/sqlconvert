@@ -1,0 +1,4 @@
+include docs/genapidocs
+include COPYING ChangeLog MANIFEST.in Makefile TODO mk-distr *.txt
+recursive-include docs Makefile *.py *.rst *.txt *.css *.js *.html *.gif *.png
+recursive-include tests Makefile *.py
