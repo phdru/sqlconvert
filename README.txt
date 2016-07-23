@@ -1,5 +1,9 @@
-Broytman mysql2sql, Copyright (C) 2016 PhiloSoft Design
+Broytman mysql to sql converter, Copyright (C) 2016 PhiloSoft Design
 Author: Oleg Broytman <phd@phdru.name>
 License: GPL
 
-This is a mysql2sql.
+This is mysql2sql, a mysql to sql converter. Intended primarily to
+convert mysqldump (especially with extended INSERT syntax) to standard
+SQL to load at least to PostgreSQL or SQLite.
+
+Uses sqlparse to parse SQL.
