@@ -15,6 +15,10 @@ except ImportError:
     from distutils.core import setup
     is_setuptools = False
 
+kw = {}
+if is_setuptools:
+    kw['install_requires'] = ['sqlparse']
+
 versionpath = join(abspath(dirname(__file__)), 'mysql2sql', '__version__.py')
 load_source('mysql2sql_version', versionpath)
 from mysql2sql_version import __version__  # noqa
@@ -45,4 +49,4 @@ setup(name='mysql2sql',
       package_data={'mysql2sql': []},
       scripts=[],
       requires=[],
-      )
+      **kw)
