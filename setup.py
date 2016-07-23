@@ -17,7 +17,7 @@ except ImportError:
 
 versionpath = join(abspath(dirname(__file__)), 'mysql2sql', '__version__.py')
 load_source('mysql2sql_version', versionpath)
-from mysql2sql_version import __version__
+from mysql2sql_version import __version__  # noqa
 
 setup(name='mysql2sql',
       version=__version__,
