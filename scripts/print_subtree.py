@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+from __future__ import print_function
 
 import sys
 from sqlparse import parse
@@ -13,12 +14,12 @@ def test():
         "/*! directive*/ INSERT INTO `MyTable` (`Id`, `Name`) "
         "VALUES (1, 'one')"
     ):
-        print "----------"
+        print("----------")
         for parsed in parse(query):
             requote_names(parsed)
             print_tokens(parsed)
             print_subtree(parsed)
-    print "----------"
+    print("----------")
 
 
 def main(query):

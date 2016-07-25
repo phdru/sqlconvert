@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+from __future__ import print_function
 
 
 import os
@@ -31,7 +32,7 @@ def main():
     os.environ["PYTHONPATH"] = os.curdir
 
     for test in sorted(tests):
-        print test
+        print(test)
         subprocess.call((sys.executable, '-m', test))
 
 if __name__ == '__main__':
