@@ -21,6 +21,7 @@ if is_setuptools:
 
 versionpath = join(abspath(dirname(__file__)), 'mysql2sql', '__version__.py')
 load_source('mysql2sql_version', versionpath)
+# Ignore: E402 module level import not at top of file
 from mysql2sql_version import __version__  # noqa
 
 setup(name='mysql2sql',
