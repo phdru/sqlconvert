@@ -4,7 +4,7 @@ from __future__ import print_function
 import sys
 from sqlparse import parse
 from mysql2sql.process_tokens import requote_names
-from mysql2sql.print_tokens import print_tokens, print_subtree
+from mysql2sql.print_tokens import print_tokens
 
 
 def test():
@@ -18,7 +18,7 @@ def test():
         for parsed in parse(query):
             requote_names(parsed)
             print_tokens(parsed)
-            print_subtree(parsed)
+            parsed._pprint_tree()
     print("----------")
 
 
@@ -26,7 +26,7 @@ def main(query):
     parsed = parse(query)[0]
     requote_names(parsed)
     print_tokens(parsed)
-    print_subtree(parsed)
+    parsed._pprint_tree()
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:

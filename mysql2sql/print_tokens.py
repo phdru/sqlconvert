@@ -10,15 +10,6 @@ except ImportError:
 from sqlparse.sql import TokenList
 
 
-def print_subtree(token_list, outfile=sys.stdout, ident=0):
-    for token in token_list:
-        outfile.write(" "*ident)
-        outfile.write(repr(token))
-        outfile.write("\n")
-        if isinstance(token, TokenList):
-            print_subtree(token, outfile, ident+4)
-
-
 def print_tokens(token_list, outfile=sys.stdout, level=0):
     for token in token_list:
         if not isinstance(token, TokenList):
