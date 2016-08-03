@@ -14,8 +14,8 @@ def test():
         "/*! directive*/ INSERT INTO `MyTable` (`Id`, `Name`) "
         "VALUES (1, 'one')"
     ):
-        print("----------")
         for parsed in parse(query):
+            print("----------")
             requote_names(parsed)
             print_tokens(parsed)
             print()
@@ -24,17 +24,20 @@ def test():
 
 
 def main(query):
-    parsed = parse(query)[0]
-    requote_names(parsed)
-    print_tokens(parsed)
-    print()
-    parsed._pprint_tree()
+    for parsed in parse(query):
+        print("----------")
+        requote_names(parsed)
+        print_tokens(parsed)
+        print()
+        parsed._pprint_tree()
+    print("----------")
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        sys.exit("Usage: %s [-t | sql_query_string]" % sys.argv[0])
+    if len(sys.argv) <= 1:
+        sys.exit("Usage: %s [-t | sql_query_string [; sql_query_string ...]]" %
+                 sys.argv[0])
     if sys.argv[1] == '-t':
         test()
     else:
-        query = sys.argv[1]
+        query = ';'.join(sys.argv[1:])
         main(query)
