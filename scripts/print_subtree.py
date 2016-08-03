@@ -23,14 +23,15 @@ def test():
     print("----------")
 
 
-def main(query):
-    for parsed in parse(query):
+def main(*queries):
+    for query in queries:
+        for parsed in parse(query):
+            print("----------")
+            requote_names(parsed)
+            print_tokens(parsed)
+            print()
+            parsed._pprint_tree()
         print("----------")
-        requote_names(parsed)
-        print_tokens(parsed)
-        print()
-        parsed._pprint_tree()
-    print("----------")
 
 if __name__ == '__main__':
     if len(sys.argv) <= 1:
@@ -39,5 +40,5 @@ if __name__ == '__main__':
     if sys.argv[1] == '-t':
         test()
     else:
-        query = ';'.join(sys.argv[1:])
-        main(query)
+        queries = sys.argv[1:]
+        main(*queries)
