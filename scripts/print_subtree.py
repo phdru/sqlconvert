@@ -18,6 +18,7 @@ def test():
         for parsed in parse(query):
             requote_names(parsed)
             print_tokens(parsed)
+            print()
             parsed._pprint_tree()
     print("----------")
 
@@ -26,6 +27,7 @@ def main(query):
     parsed = parse(query)[0]
     requote_names(parsed)
     print_tokens(parsed)
+    print()
     parsed._pprint_tree()
 
 if __name__ == '__main__':

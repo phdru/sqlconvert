@@ -16,8 +16,6 @@ def print_tokens(token_list, outfile=sys.stdout, level=0):
             outfile.write(token.normalized)
         if isinstance(token, TokenList):
             print_tokens(token, outfile, level+1)
-    if level == 0:
-        outfile.write(';\n')
 
 
 def get_tokens_str(token_list):
