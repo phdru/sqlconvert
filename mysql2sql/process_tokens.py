@@ -13,6 +13,7 @@ def requote_names(token_list):
                 value = token.value
                 if (value[0] == "`") and (value[-1] == "`"):
                     value = value[1:-1]
+                if value.islower():
                     token.normalized = token.value = value
-                if not value.islower():
+                else:
                     token.normalized = token.value = '"%s"' % value
