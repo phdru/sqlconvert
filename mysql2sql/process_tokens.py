@@ -1,6 +1,6 @@
 
 from sqlparse.sql import TokenList
-from sqlparse.tokens import Name
+from sqlparse.tokens import Name, Error
 
 
 def requote_names(token_list):
@@ -16,3 +16,14 @@ def requote_names(token_list):
                 token.normalized = token.value = value
             else:
                 token.normalized = token.value = '"%s"' % value
+
+
+def find_error(token_list):
+    """Find an error"""
+    for token in token_list:
+        if isinstance(token, TokenList):
+            if find_error(token):
+                return True
+        elif token.ttype is Error:
+            return True
+    return False
