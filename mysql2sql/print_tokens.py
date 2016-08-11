@@ -12,10 +12,10 @@ from sqlparse.sql import TokenList
 
 def print_tokens(token_list, outfile=sys.stdout, level=0):
     for token in token_list:
-        if not isinstance(token, TokenList):
-            outfile.write(token.normalized)
         if isinstance(token, TokenList):
             print_tokens(token, outfile, level+1)
+        else:
+            outfile.write(token.normalized)
 
 
 def get_tokens_str(token_list):
