@@ -14,7 +14,7 @@ class TestTokens(unittest.TestCase):
         parsed = parse("select * from `T`")[0]
         requote_names(parsed)
         query = get_tokens_str(parsed)
-        self.assertEqual(query, 'SELECT * FROM "T";\n')
+        self.assertEqual(query, 'SELECT * FROM "T"')
 
 
 if __name__ == "__main__":
