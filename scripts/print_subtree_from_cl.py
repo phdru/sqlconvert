@@ -7,24 +7,6 @@ from mysql2sql.print_tokens import print_tokens
 from mysql2sql.process_tokens import requote_names, find_error
 
 
-def test():
-    for query in (
-        "SELECT * FROM `mytable`; -- line-comment",
-        "INSERT into /* inline comment */ mytable VALUES (1, 'one')",
-        "/*! directive*/ INSERT INTO `MyTable` (`Id`, `Name`) "
-        "VALUES (1, 'one')"
-    ):
-        for parsed in parse(query):
-            print("----------")
-            if find_error(parsed):
-                print("ERRORS IN QUERY")
-            requote_names(parsed)
-            print_tokens(parsed)
-            print()
-            parsed._pprint_tree()
-    print("----------")
-
-
 def main(*queries):
     for query in queries:
         for parsed in parse(query):
@@ -36,6 +18,16 @@ def main(*queries):
             print()
             parsed._pprint_tree()
         print("----------")
+
+
+def test():
+    main(
+        "SELECT * FROM `mytable`; -- line-comment",
+        "INSERT into /* inline comment */ mytable VALUES (1, 'one')",
+        "/*! directive*/ INSERT INTO `MyTable` (`Id`, `Name`) "
+        "VALUES (1, 'one')"
+    )
+
 
 if __name__ == '__main__':
     if len(sys.argv) <= 1:
