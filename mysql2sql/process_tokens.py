@@ -5,10 +5,8 @@ from sqlparse.tokens import Name, Error
 
 def requote_names(token_list):
     """Remove backticks, quote non-lowercase identifiers"""
-    for token in token_list:
-        if isinstance(token, TokenList):
-            requote_names(token)
-        elif token.ttype is Name:
+    for token in token_list.flatten():
+        if token.ttype is Name:
             value = token.value
             if (value[0] == "`") and (value[-1] == "`"):
                 value = value[1:-1]
@@ -20,10 +18,7 @@ def requote_names(token_list):
 
 def find_error(token_list):
     """Find an error"""
-    for token in token_list:
-        if isinstance(token, TokenList):
-            if find_error(token):
-                return True
-        elif token.ttype is Error:
+    for token in token_list.flatten():
+        if token.ttype is Error:
             return True
     return False
