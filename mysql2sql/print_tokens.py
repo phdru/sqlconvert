@@ -1,12 +1,5 @@
 
 import sys
-try:
-    from cStringIO import StringIO
-except ImportError:
-    try:
-        from StringIO import StringIO
-    except ImportError:
-        from io import StringIO
 
 
 def print_tokens(token_list, outfile=sys.stdout):
@@ -14,7 +7,5 @@ def print_tokens(token_list, outfile=sys.stdout):
         outfile.write(token.normalized)
 
 
-def get_tokens_str(token_list):
-    sio = StringIO()
-    print_tokens(token_list, outfile=sio)
-    return sio.getvalue()
+def tlist2str(token_list):
+    return ''.join(token.normalized for token in token_list.flatten())
