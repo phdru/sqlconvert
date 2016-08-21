@@ -1,6 +1,6 @@
 
-from sqlparse.sql import TokenList
-from sqlparse.tokens import Name, Error
+from sqlparse.sql import Statement
+from sqlparse.tokens import Name, Error, Punctuation
 
 
 def requote_names(token_list):
@@ -22,3 +22,25 @@ def find_error(token_list):
         if token.ttype is Error:
             return True
     return False
+
+
+class StatementGrouper(object):
+    def __init__(self):
+        self.tokens = []
+        self.statements = []
+
+    def get_statements(self):
+        for statement in self.statements:
+            yield statement
+        self.statements = []
+
+    def process(self, tokens):
+        for token in tokens:
+            self.tokens.append(token)
+            if (token.ttype == Punctuation) and (token.value == ';'):
+                self.statements.append(Statement(self.tokens))
+                self.tokens = []
+
+    def close(self):
+        if self.tokens:
+            raise ValueError("Incomplete SQL statement")
