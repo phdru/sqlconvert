@@ -31,7 +31,7 @@ class TestStGrouper(unittest.TestCase):
         self.assertEqual(query, 'SELECT * FROM "T";')
         self.assertRaises(StopIteration, next, g)
         self.assertEqual(len(grouper.statements), 0)
-        self.assertIsNone(grouper.close())
+        self.assertEqual(grouper.close(), [])
 
 if __name__ == "__main__":
     main()

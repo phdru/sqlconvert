@@ -1,6 +1,7 @@
 
 from sqlparse.sql import Statement
-from sqlparse.tokens import Name, Error, Punctuation
+from sqlparse.tokens import Name, Error, Punctuation, Comment, Newline, \
+    Whitespace
 
 
 def requote_names(token_list):
@@ -42,5 +43,8 @@ class StatementGrouper(object):
                 self.tokens = []
 
     def close(self):
-        if self.tokens:
-            raise ValueError("Incomplete SQL statement")
+        for token in self.tokens:
+            if (token.ttype not in (Comment.Single, Comment.Multiline,
+                                    Newline, Whitespace)):
+                raise ValueError("Incomplete SQL statement: %s" % self.tokens)
+        return self.tokens

@@ -23,7 +23,10 @@ def main(filename):
                     print()
                     statement._pprint_tree()
                 print("----------")
-    grouper.close()
+    tokens = grouper.close()
+    for token in tokens:
+        print_tokens(token)
+        print(repr(token))
 
 
 if __name__ == '__main__':
