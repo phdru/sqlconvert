@@ -1,4 +1,5 @@
 
+from sqlparse import parse
 from sqlparse.sql import Statement
 from sqlparse.tokens import Name, Error, Punctuation, Comment, Newline, \
     Whitespace
@@ -27,20 +28,28 @@ def find_error(token_list):
 
 class StatementGrouper(object):
     def __init__(self):
+        self.statements = []
         self.tokens = []
-        self.statements = []
+        self.lines = []
 
-    def get_statements(self):
-        for statement in self.statements:
-            yield statement
-        self.statements = []
+    def process_line(self, line):
+        lines = self.lines
+        lines.append(line)
+        tokens = parse('\n'.join(lines))[0]
+        self.process_tokens(tokens)
+        self.lines = []
 
-    def process(self, tokens):
+    def process_tokens(self, tokens):
         for token in tokens:
             self.tokens.append(token)
             if (token.ttype == Punctuation) and (token.value == ';'):
                 self.statements.append(Statement(self.tokens))
                 self.tokens = []
+
+    def get_statements(self):
+        for statement in self.statements:
+            yield statement
+        self.statements = []
 
     def close(self):
         for token in self.tokens:

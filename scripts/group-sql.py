@@ -2,7 +2,6 @@
 from __future__ import print_function
 
 import sys
-from sqlparse import parse
 from mysql2sql.print_tokens import print_tokens
 from mysql2sql.process_tokens import requote_names, find_error, \
     StatementGrouper
@@ -11,7 +10,7 @@ from mysql2sql.process_tokens import requote_names, find_error, \
 def main(*queries):
     grouper = StatementGrouper()
     for query in queries:
-        grouper.process(parse(query)[0])
+        grouper.process_line(query)
         if grouper.statements:
             for statement in grouper.get_statements():
                 print("----------")

@@ -2,7 +2,6 @@
 
 
 import unittest
-from sqlparse import parse
 
 from mysql2sql.print_tokens import tlist2str
 from mysql2sql.process_tokens import requote_names, StatementGrouper
@@ -12,16 +11,14 @@ from tests import main
 class TestStGrouper(unittest.TestCase):
     def test_incomplete(self):
         grouper = StatementGrouper()
-        parsed = parse("select * from `T`")[0]
-        grouper.process(parsed)
+        grouper.process_line("select * from `T`")
         self.assertFalse(grouper.statements)
         self.assertEqual(len(grouper.statements), 0)
         self.assertRaises(ValueError, grouper.close)
 
     def test_statements(self):
         grouper = StatementGrouper()
-        parsed = parse("select * from `T`;")[0]
-        grouper.process(parsed)
+        grouper.process_line("select * from `T`;")
         self.assertTrue(grouper.statements)
         self.assertEqual(len(grouper.statements), 1)
         for statement in grouper.get_statements():
