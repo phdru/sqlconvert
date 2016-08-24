@@ -24,12 +24,10 @@ class TestStGrouper(unittest.TestCase):
         grouper.process(parsed)
         self.assertTrue(grouper.statements)
         self.assertEqual(len(grouper.statements), 1)
-        g = grouper.get_statements()
-        statement = next(g)
-        requote_names(statement)
-        query = tlist2str(parsed)
-        self.assertEqual(query, 'SELECT * FROM "T";')
-        self.assertRaises(StopIteration, next, g)
+        for statement in grouper.get_statements():
+            requote_names(statement)
+            query = tlist2str(statement)
+            self.assertEqual(query, 'SELECT * FROM "T";')
         self.assertEqual(len(grouper.statements), 0)
         self.assertEqual(grouper.close(), [])
 
