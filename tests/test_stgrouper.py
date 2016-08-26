@@ -26,7 +26,7 @@ class TestStGrouper(unittest.TestCase):
             query = tlist2str(statement)
             self.assertEqual(query, 'SELECT * FROM "T";')
         self.assertEqual(len(grouper.statements), 0)
-        self.assertEqual(grouper.close(), [])
+        self.assertEqual(grouper.close(), None)
 
 if __name__ == "__main__":
     main()

@@ -22,9 +22,10 @@ def main(*queries):
                 statement._pprint_tree()
             print("----------")
     tokens = grouper.close()
-    for token in tokens:
-        print_tokens(token)
-        print(repr(token))
+    if tokens:
+        for token in tokens:
+            print_tokens(token)
+            print(repr(token))
 
 
 def test():
