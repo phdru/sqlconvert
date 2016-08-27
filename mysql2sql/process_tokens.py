@@ -1,5 +1,6 @@
 
 from sqlparse import parse
+from sqlparse.compat import PY3
 from sqlparse.tokens import Name, Error, Punctuation, Comment, Newline, \
     Whitespace
 
@@ -23,6 +24,10 @@ def find_error(token_list):
         if token.ttype is Error:
             return True
     return False
+
+
+if PY3:
+    xrange = range
 
 
 class StatementGrouper(object):
