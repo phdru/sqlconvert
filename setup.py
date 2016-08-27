@@ -47,7 +47,7 @@ setup(name='mysql2sql',
           'Programming Language :: Python :: 3.4',
       ],
       packages=['mysql2sql'],
-      package_data={'mysql2sql': ['../sample/sample.sql']},
       scripts=[],
+      package_data={},
       requires=[],
       **kw)
