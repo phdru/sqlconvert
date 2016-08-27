@@ -42,7 +42,7 @@ class StatementGrouper(object):
         self.process_lines()
 
     def process_lines(self):
-        statements = parse('\n'.join(self.lines))
+        statements = parse(''.join(self.lines))
         last_stmt = statements[-1]
         for i in xrange(len(last_stmt.tokens) - 1, 0, -1):
             token = last_stmt.tokens[i]
@@ -64,7 +64,7 @@ class StatementGrouper(object):
     def close(self):
         if not self.lines:
             return
-        tokens = parse('\n'.join(self.lines))
+        tokens = parse(''.join(self.lines))
         for token in tokens:
             if (token.ttype not in (Comment.Single, Comment.Multiline,
                                     Newline, Whitespace)):
