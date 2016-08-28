@@ -1,5 +1,4 @@
-include docs/genapidocs
-include COPYING ChangeLog MANIFEST.in Makefile TODO ez_setup.py mk-distr *.txt
-recursive-include demo *.py sample.sql
-recursive-include docs Makefile *.py *.rst *.txt *.css *.js *.html *.gif *.png
-recursive-include tests Makefile *.py
+global-include Makefile *.py *.rst *.txt
+include demo/sample.sql docs/genapidocs
+include COPYING ChangeLog MANIFEST.in TODO mk-distr
+recursive-include docs *.css *.js *.html *.gif *.png
