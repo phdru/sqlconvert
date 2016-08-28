@@ -7,3 +7,5 @@ convert mysqldump (especially with extended INSERT syntax) to standard
 SQL to load at least to PostgreSQL or SQLite.
 
 Uses sqlparse to parse SQL.
+
+The program is in its initial phase and currently cannot do much.

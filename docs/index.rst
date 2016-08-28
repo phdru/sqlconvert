@@ -6,11 +6,31 @@
 Welcome to mysql2sql's documentation!
 =====================================
 
-Contents:
+This is mysql2sql, a mysql to sql converter. It is primary intended to
+convert mysqldump (especially with extended INSERT syntax) to standard
+SQL to load at least to PostgreSQL or SQLite.
 
-.. toctree::
-   :maxdepth: 2
+It uses `sqlparse <https://github.com/andialbrecht/sqlparse>`_ to parse
+SQL.
 
+The program is in its initial phase and currently cannot do much.
+
+.. highlight:: none
+
+Command line
+------------
+
+mysql-to-sql.py
+~~~~~~~~~~~~~~~
+
+Usage::
+
+    mysql-to-sql.py [-i infile] [-o outfile]
+
+Options::
+
+    -i, --infile infile    Input file, stdin if absent
+    -o, --outfile outfile  Output file, stdout if absent
 
 
 Indices and tables
@@ -20,3 +40,16 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
+
+Credits
+=======
+
+Created by Oleg Broytman <phd@phdru.name>.
+
+Copyright (C) 2016 PhiloSoft Design.
+
+
+License
+=======
+
+GPL.
