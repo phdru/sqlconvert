@@ -33,16 +33,17 @@ if PY3:
 class StatementGrouper(object):
     """Collect lines and reparse until the last statement is complete"""
 
-    def __init__(self):
+    def __init__(self, encoding=None):
         self.lines = []
         self.statements = []
+        self.encoding = encoding
 
     def process_line(self, line):
         self.lines.append(line)
         self.process_lines()
 
     def process_lines(self):
-        statements = parse(''.join(self.lines))
+        statements = parse(''.join(self.lines), encoding=self.encoding)
         last_stmt = statements[-1]
         for i in xrange(len(last_stmt.tokens) - 1, 0, -1):
             token = last_stmt.tokens[i]
@@ -64,7 +65,7 @@ class StatementGrouper(object):
     def close(self):
         if not self.lines:
             return
-        tokens = parse(''.join(self.lines))
+        tokens = parse(''.join(self.lines), encoding=self.encoding)
         for token in tokens:
             if (token.ttype not in (Comment.Single, Comment.Multiline,
                                     Newline, Whitespace)):

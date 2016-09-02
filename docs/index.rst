@@ -25,10 +25,16 @@ mysql-to-sql.py
 
 Usage::
 
-    mysql-to-sql.py [infile] [[-o] outfile]
+    mysql-to-sql.py [-e encoding] [-E output_encoding] [infile] [[-o] outfile]
 
 Options::
 
+   -e ENCODING, --encoding ENCODING
+                           input/output encoding, default is utf-8
+   -E OUTPUT_ENCODING, --output-encoding OUTPUT_ENCODING
+                           separate output encoding, default is the same as
+                           `-e` except for console; for console output charset
+                           from the current locale is used
     infile                 Input file, stdin if absent or '-'
     -o, --outfile outfile  Output file, stdout if absent or '-'
 
