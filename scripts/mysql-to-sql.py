@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+from __future__ import print_function
 
 import argparse
 import sys
@@ -32,6 +33,7 @@ if __name__ == '__main__':
     else:
         infile = sys.stdin
         if infile.isatty():
+            print("Error: cannot input from console", file=sys.stderr)
             parser.print_help()
             sys.exit()
 
