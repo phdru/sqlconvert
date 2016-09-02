@@ -25,12 +25,23 @@ mysql-to-sql.py
 
 Usage::
 
-    mysql-to-sql.py [-i infile] [-o outfile]
+    mysql-to-sql.py [infile] [[-o] outfile]
 
 Options::
 
-    -i, --infile infile    Input file, stdin if absent
-    -o, --outfile outfile  Output file, stdout if absent
+    infile                 Input file, stdin if absent or '-'
+    -o, --outfile outfile  Output file, stdout if absent or '-'
+
+Option `-o` is useful when infile is absent (input is redirected), for
+example::
+
+    mysql-to-sql.py -o outfile.sql < infile.sql
+    cat infile.sql | mysql-to-sql.py -o outfile.sql
+
+But of course it simple can be::
+
+    mysql-to-sql.py - outfile.sql < infile.sql
+    cat infile.sql | mysql-to-sql.py - outfile.sql
 
 
 Indices and tables

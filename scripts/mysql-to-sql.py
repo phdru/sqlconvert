@@ -24,27 +24,46 @@ def main(infile, outfile):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Convert MySQL to SQL')
-    parser.add_argument('-i', '--infile', help='input file name')
     parser.add_argument('-o', '--outfile', help='output file name')
+    parser.add_argument('infile', help='input file name')
+    parser.add_argument('output_file', nargs='?', help='output file name')
     args = parser.parse_args()
 
     if args.infile:
-        infile = open(args.infile, 'rt')
+        if args.infile == '-':
+            infile = sys.stdin
+        else:
+            infile = open(args.infile, 'rt')
     else:
         infile = sys.stdin
-        if infile.isatty():
-            print("Error: cannot input from console", file=sys.stderr)
-            parser.print_help()
-            sys.exit()
+
+    if infile.isatty():
+        print("Error: cannot read from console", file=sys.stderr)
+        parser.print_help()
+        sys.exit(1)
 
     if args.outfile:
+        if args.output_file:
+            print("Error: too many output files", file=sys.stderr)
+            parser.print_help()
+            sys.exit(1)
+
+        outfile = args.outfile
+
+    elif args.output_file:
+        outfile = args.output_file
+
+    else:
+        outfile = '-'
+
+    if outfile == '-':
+        outfile = sys.stdout
+    else:
         try:
-            outfile = open(args.outfile, 'wt')
+            outfile = open(outfile, 'wt')
         except:
             if infile is not sys.stdin:
                 infile.close()
             raise
-    else:
-        outfile = sys.stdout
 
     main(infile, outfile)
