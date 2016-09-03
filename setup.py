@@ -15,10 +15,6 @@ except ImportError:
     from distutils.core import setup
     is_setuptools = False
 
-kw = {}
-if is_setuptools:
-    kw['install_requires'] = ['sqlparse']
-
 versionpath = join(abspath(dirname(__file__)), 'mysql2sql', '__version__.py')
 load_source('mysql2sql_version', versionpath)
 # Ignore: E402 module level import not at top of file
@@ -49,5 +45,5 @@ setup(name='mysql2sql',
       packages=['mysql2sql'],
       package_data={},
       scripts=['scripts/mysql-to-sql.py'],
-      requires=[],
-      **kw)
+      requires=['sqlparse', 'm_lib'],
+      )
