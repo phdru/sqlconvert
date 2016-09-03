@@ -20,12 +20,12 @@ The program is in its initial phase and currently cannot do much.
 Command line
 ------------
 
-mysql-to-sql.py
-~~~~~~~~~~~~~~~
+mysql2sql
+~~~~~~~~~
 
 Usage::
 
-    mysql-to-sql.py [-e encoding] [-E output_encoding] [infile] [[-o] outfile]
+    mysql2sql [-e encoding] [-E output_encoding] [infile] [[-o] outfile]
 
 Options::
 
@@ -41,13 +41,13 @@ Options::
 Option `-o` is useful when infile is absent (input is redirected), for
 example::
 
-    mysql-to-sql.py -o outfile.sql < infile.sql
-    cat infile.sql | mysql-to-sql.py -o outfile.sql
+    mysql2sql -o outfile.sql < infile.sql
+    cat infile.sql | mysql2sql -o outfile.sql
 
 But of course it simply can be::
 
-    mysql-to-sql.py - outfile.sql < infile.sql
-    cat infile.sql | mysql-to-sql.py - outfile.sql
+    mysql2sql - outfile.sql < infile.sql
+    cat infile.sql | mysql2sql - outfile.sql
 
 
 Indices and tables

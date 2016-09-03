@@ -44,6 +44,6 @@ setup(name='mysql2sql',
       ],
       packages=['mysql2sql'],
       package_data={},
-      scripts=['scripts/mysql-to-sql.py'],
+      scripts=['scripts/mysql2sql'],
       requires=['sqlparse', 'm_lib'],
       )
