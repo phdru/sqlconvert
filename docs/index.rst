@@ -44,7 +44,7 @@ example::
     mysql-to-sql.py -o outfile.sql < infile.sql
     cat infile.sql | mysql-to-sql.py -o outfile.sql
 
-But of course it simple can be::
+But of course it simply can be::
 
     mysql-to-sql.py - outfile.sql < infile.sql
     cat infile.sql | mysql-to-sql.py - outfile.sql
