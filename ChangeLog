@@ -1,3 +1,9 @@
+Version 0.0.2 (2016-09-04)
+
+   Rename mysql-to-sql.py -> mysql2py.
+
+   Display progress bar.
+
 Version 0.0.1 (2016-09-03)
 
    First release. Setup, tests and docs infrastructure.
