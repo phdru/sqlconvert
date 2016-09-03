@@ -29,14 +29,18 @@ Usage::
 
 Options::
 
-   -e ENCODING, --encoding ENCODING
+    -e ENCODING, --encoding ENCODING
                            input/output encoding, default is utf-8
-   -E OUTPUT_ENCODING, --output-encoding OUTPUT_ENCODING
+    -E OUTPUT_ENCODING, --output-encoding OUTPUT_ENCODING
                            separate output encoding, default is the same as
                            `-e` except for console; for console output charset
                            from the current locale is used
+    -P, --no-pbar          Inhibit progress bar
     infile                 Input file, stdin if absent or '-'
     -o, --outfile outfile  Output file, stdout if absent or '-'
+
+If stderr is connected to the console the program displays a text mode progress
+bar. Option `-P/--no-pbar` inhibits it.
 
 Option `-o` is useful when infile is absent (input is redirected), for
 example::

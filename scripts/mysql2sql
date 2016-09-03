@@ -3,17 +3,48 @@ from __future__ import print_function
 
 import argparse
 from io import open
+import os
 import sys
 
+from sqlparse.compat import text_type
 from mysql2sql.print_tokens import print_tokens
 from mysql2sql.process_tokens import requote_names, StatementGrouper
 
 from m_lib.defenc import default_encoding
+from m_lib.pbar.tty_pbar import ttyProgressBar
 
 
-def main(infile, encoding, outfile, output_encoding):
+def get_fsize(fp):
+    try:
+        fp.seek(0, os.SEEK_END)
+    except IOError:
+        return None  # File size is unknown
+    size = fp.tell()
+    fp.seek(0, os.SEEK_SET)
+    return size
+
+
+def main(infile, encoding, outfile, output_encoding, use_pbar):
+    if use_pbar:
+        size = get_fsize(infile)
+        if size is None:
+            use_pbar = False
+
+    print("Converting: ", end='', file=sys.stderr)
+    sys.stderr.flush()
+
+    if use_pbar:
+        pbar = ttyProgressBar(0, size-1)
+        cur_pos = 0
+
     grouper = StatementGrouper(encoding=encoding)
     for line in infile:
+        if use_pbar:
+            if isinstance(line, text_type):
+                cur_pos += len(line.encode(encoding))
+            else:
+                cur_pos += len(line)
+            pbar.display(cur_pos)
         grouper.process_line(line)
         if grouper.statements:
             for statement in grouper.get_statements():
@@ -25,6 +56,9 @@ def main(infile, encoding, outfile, output_encoding):
         for token in tokens:
             print_tokens(token, outfile=outfile, encoding=output_encoding)
 
+    if use_pbar:
+        pbar.erase()
+    print("done.")
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Convert MySQL to SQL')
@@ -35,6 +69,8 @@ if __name__ == '__main__':
                         'as -e except for console; for console output '
                         'charset from the current locale is used')
     parser.add_argument('-o', '--outfile', help='output file name')
+    parser.add_argument('-P', '--no-pbar', action='store_true',
+                        help='inhibit progress bar')
     parser.add_argument('infile', help='input file name')
     parser.add_argument('output_file', nargs='?', help='output file name')
     args = parser.parse_args()
@@ -83,4 +119,4 @@ if __name__ == '__main__':
                 infile.close()
             raise
 
-    main(infile, args.encoding, outfile, output_encoding)
+    main(infile, args.encoding, outfile, output_encoding, not args.no_pbar)
