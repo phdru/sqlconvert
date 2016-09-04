@@ -4,7 +4,7 @@ from __future__ import print_function
 import sys
 from sqlparse import parse
 from sqlconvert.print_tokens import print_tokens
-from sqlconvert.process_mysql import requote_names
+from sqlconvert.process_mysql import process_statement
 from sqlconvert.process_tokens import find_error
 
 
@@ -15,7 +15,7 @@ def main(filename):
                 print("----------")
                 if find_error(parsed):
                     print("ERRORS IN QUERY")
-                requote_names(parsed)
+                process_statement(parsed)
                 print_tokens(parsed)
                 print()
                 parsed._pprint_tree()

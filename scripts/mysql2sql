@@ -8,7 +8,7 @@ import sys
 
 from sqlparse.compat import text_type
 from sqlconvert.print_tokens import print_tokens
-from sqlconvert.process_mysql import requote_names
+from sqlconvert.process_mysql import process_statement
 from sqlconvert.process_tokens import StatementGrouper
 
 from m_lib.defenc import default_encoding
@@ -49,7 +49,7 @@ def main(infile, encoding, outfile, output_encoding, use_pbar):
         grouper.process_line(line)
         if grouper.statements:
             for statement in grouper.get_statements():
-                requote_names(statement)
+                process_statement(statement)
                 print_tokens(statement, outfile=outfile,
                              encoding=output_encoding)
     tokens = grouper.close()

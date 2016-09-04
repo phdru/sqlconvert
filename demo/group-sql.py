@@ -3,7 +3,7 @@ from __future__ import print_function
 
 import sys
 from sqlconvert.print_tokens import print_tokens
-from sqlconvert.process_mysql import requote_names
+from sqlconvert.process_mysql import process_statement
 from sqlconvert.process_tokens import find_error, StatementGrouper
 
 
@@ -16,7 +16,7 @@ def main(*queries):
                 print("----------")
                 if find_error(statement):
                     print("ERRORS IN QUERY")
-                requote_names(statement)
+                process_statement(statement)
                 print_tokens(statement)
                 print()
                 statement._pprint_tree()

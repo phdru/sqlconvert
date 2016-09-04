@@ -1,3 +1,7 @@
+Version 0.0.4 (2016-09-04)
+
+   Add MySQL-specific remove_directives() and process_statement().
+
 Version 0.0.3 (2016-09-04)
 
    Rename the project: mysql2py -> sqlconvert.

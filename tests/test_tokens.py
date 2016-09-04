@@ -5,17 +5,12 @@ import unittest
 from sqlparse import parse
 
 from sqlconvert.print_tokens import tlist2str
-from sqlconvert.process_mysql import requote_names
+from sqlconvert.process_mysql import requote_names, remove_directives, \
+        process_statement
 from tests import main
 
 
 class TestTokens(unittest.TestCase):
-    def test_requote(self):
-        parsed = parse("select * from `T`")[0]
-        requote_names(parsed)
-        query = tlist2str(parsed)
-        self.assertEqual(query, 'SELECT * FROM "T"')
-
     def test_encoding(self):
         parsed = parse("insert into test (1, 'тест')", 'utf-8')[0]
         query = tlist2str(parsed).encode('utf-8')
@@ -26,6 +21,24 @@ class TestTokens(unittest.TestCase):
         parsed = parse(u"insert into test (1, 'тест')")[0]
         query = tlist2str(parsed)
         self.assertEqual(query, u"INSERT INTO test (1, 'тест')")
+
+    def test_requote(self):
+        parsed = parse("select * from `T`")[0]
+        requote_names(parsed)
+        query = tlist2str(parsed)
+        self.assertEqual(query, 'SELECT * FROM "T"')
+
+    def test_directives(self):
+        parsed = parse("select /*! test */ * from /* test */ `T`")[0]
+        remove_directives(parsed)
+        query = tlist2str(parsed)
+        self.assertEqual(query, 'SELECT * FROM /* test */ `T`')
+
+    def test_process(self):
+        parsed = parse("select /*! test */ * from /* test */ `T`")[0]
+        process_statement(parsed)
+        query = tlist2str(parsed)
+        self.assertEqual(query, 'SELECT * FROM /* test */ "T"')
 
 
 if __name__ == "__main__":
