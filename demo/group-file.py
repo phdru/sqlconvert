@@ -3,8 +3,8 @@ from __future__ import print_function
 
 import sys
 from sqlconvert.print_tokens import print_tokens
-from sqlconvert.process_tokens import requote_names, find_error, \
-    StatementGrouper
+from sqlconvert.process_mysql import requote_names
+from sqlconvert.process_tokens import find_error, StatementGrouper
 
 
 def main(filename):

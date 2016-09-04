@@ -4,7 +4,8 @@ from __future__ import print_function
 import sys
 from sqlparse import parse
 from sqlconvert.print_tokens import print_tokens
-from sqlconvert.process_tokens import requote_names, find_error
+from sqlconvert.process_mysql import requote_names
+from sqlconvert.process_tokens import find_error
 
 
 def main(*queries):

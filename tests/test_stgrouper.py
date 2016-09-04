@@ -4,7 +4,8 @@
 import unittest
 
 from sqlconvert.print_tokens import tlist2str
-from sqlconvert.process_tokens import requote_names, StatementGrouper
+from sqlconvert.process_mysql import requote_names
+from sqlconvert.process_tokens import StatementGrouper
 from tests import main
 
 
