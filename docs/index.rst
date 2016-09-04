@@ -18,9 +18,9 @@ standard SQL to load at least to PostgreSQL or SQLite.
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-   mysq2sql
+   mysql2sql
 
 
 Indices and tables
