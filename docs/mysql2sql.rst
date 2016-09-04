@@ -5,7 +5,9 @@ This is mysql2sql, a mysql to sql converter. It is primary intended to
 convert mysqldump (especially with extended INSERT syntax) to standard
 SQL to load at least to PostgreSQL or SQLite.
 
-The program is in its initial phase and currently cannot do much.
+The program is in its initial phase and currently cannot do much. It only
+removes /\*! directives \*/ and passes everything else unmodified.
+
 
 .. highlight:: none
 
