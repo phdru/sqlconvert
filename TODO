@@ -1,6 +1,3 @@
-Remove /*! directives */
-
-
 Convert string escapes to generic SQL, Postgres- or SQLite-specific.
 
 
