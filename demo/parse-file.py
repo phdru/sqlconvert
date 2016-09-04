@@ -3,8 +3,8 @@ from __future__ import print_function
 
 import sys
 from sqlparse import parse
-from mysql2sql.print_tokens import print_tokens
-from mysql2sql.process_tokens import requote_names, find_error
+from sqlconvert.print_tokens import print_tokens
+from sqlconvert.process_tokens import requote_names, find_error
 
 
 def main(filename):

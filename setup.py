@@ -15,14 +15,14 @@ except ImportError:
     from distutils.core import setup
     is_setuptools = False
 
-versionpath = join(abspath(dirname(__file__)), 'mysql2sql', '__version__.py')
-load_source('mysql2sql_version', versionpath)
+versionpath = join(abspath(dirname(__file__)), 'sqlconvert', '__version__.py')
+load_source('sqlconvert_version', versionpath)
 # Ignore: E402 module level import not at top of file
-from mysql2sql_version import __version__  # noqa
+from sqlconvert_version import __version__  # noqa
 
-setup(name='mysql2sql',
+setup(name='sqlconvert',
       version=__version__,
-      description='Broytman mysql2sql',
+      description='Broytman sqlconvert',
       long_description=open('README.txt', 'rtU').read(),
       author='Oleg Broytman',
       author_email='phd@phdru.name',
@@ -42,8 +42,8 @@ setup(name='mysql2sql',
           'Programming Language :: Python :: 3',
           'Programming Language :: Python :: 3.4',
       ],
-      packages=['mysql2sql'],
+      packages=['sqlconvert'],
       package_data={},
-      scripts=['scripts/mysql2sql'],
+      scripts=['scripts/sqlconvert'],
       requires=['sqlparse', 'm_lib'],
       )

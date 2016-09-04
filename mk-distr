@@ -2,13 +2,13 @@
 
 umask 022 &&
 
-git archive --format=tar --prefix=mysql2sql/ "${1:-HEAD}" |
+git archive --format=tar --prefix=sqlconvert/ "${1:-HEAD}" |
    (cd "$HOME/tmp" && exec tar xf -) &&
 
-cp -ap docs "$HOME/tmp/mysql2sql" &&
+cp -ap docs "$HOME/tmp/sqlconvert" &&
 
-cd "$HOME/tmp/mysql2sql" &&
+cd "$HOME/tmp/sqlconvert" &&
 chmod -R u=rwX,go=rX docs &&
 
 python setup.py sdist --formats=bztar &&
-cd dist && mv mysql2sql-*.tar.bz2 ../.. && cd ../.. && exec rm -rf mysql2sql
+cd dist && mv sqlconvert-*.tar.bz2 ../.. && cd ../.. && exec rm -rf sqlconvert

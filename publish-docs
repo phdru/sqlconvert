@@ -1,6 +1,6 @@
 #! /bin/sh
 
-web="$HOME"/Internet/WWW/htdocs/phdru.name/Software/Python/mysql2sql/docs
+web="$HOME"/Internet/WWW/htdocs/phdru.name/Software/Python/sqlconvert/docs
 
 cd "`dirname \"$0\"`"/docs/_build/html &&
 rsync -ahP --del * --exclude=objects.inv "$web" &&

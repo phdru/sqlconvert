@@ -4,8 +4,8 @@
 import unittest
 from sqlparse import parse
 
-from mysql2sql.process_tokens import requote_names
-from mysql2sql.print_tokens import tlist2str
+from sqlconvert.process_tokens import requote_names
+from sqlconvert.print_tokens import tlist2str
 from tests import main
 
 
