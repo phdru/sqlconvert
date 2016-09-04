@@ -1,4 +1,5 @@
 global-include Makefile *.py *.rst *.txt
 include demo/sample.sql docs/genapidocs
+include scripts/mysql2sql
 include COPYING ChangeLog MANIFEST.in TODO mk-distr
 recursive-include docs *.css *.js *.html *.gif *.png
