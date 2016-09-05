@@ -8,7 +8,7 @@ from sqlconvert.process_tokens import find_error, StatementGrouper
 
 
 def main(*queries):
-    grouper = StatementGrouper()
+    grouper = StatementGrouper(encoding='utf-8')
     for query in queries:
         grouper.process_line(query)
         if grouper.statements:
@@ -17,14 +17,14 @@ def main(*queries):
                 if find_error(statement):
                     print("ERRORS IN QUERY")
                 process_statement(statement)
-                print_tokens(statement)
+                print_tokens(statement, encoding='utf-8')
                 print()
                 statement._pprint_tree()
             print("----------")
     tokens = grouper.close()
     if tokens:
         for token in tokens:
-            print_tokens(token)
+            print_tokens(token, encoding='utf-8')
             print(repr(token))
 
 

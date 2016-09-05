@@ -10,12 +10,12 @@ from sqlconvert.process_tokens import find_error
 
 def main(*queries):
     for query in queries:
-        for parsed in parse(query):
+        for parsed in parse(query, encoding='utf-8'):
             print("----------")
             if find_error(parsed):
                 print("ERRORS IN QUERY")
             process_statement(parsed)
-            print_tokens(parsed)
+            print_tokens(parsed, encoding='utf-8')
             print()
             parsed._pprint_tree()
         print("----------")
