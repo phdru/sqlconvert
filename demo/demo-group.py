@@ -1,15 +1,16 @@
 #! /usr/bin/env python
 from __future__ import print_function
 
+import argparse
 import sys
 from sqlconvert.print_tokens import print_tokens
 from sqlconvert.process_tokens import find_error, StatementGrouper
 
 
-def main(*queries):
+def group_lines(*lines):
     grouper = StatementGrouper(encoding='utf-8')
-    for query in queries:
-        grouper.process_line(query)
+    for line in lines:
+        grouper.process_line(line)
         if grouper.statements:
             for statement in grouper.get_statements():
                 print("----------")
@@ -26,8 +27,8 @@ def main(*queries):
             print(repr(token))
 
 
-def test():
-    main(
+def group_test(_args):
+    group_lines(
         "SELECT * FROM `mytable`; -- line-comment",
         "INSERT into /* inline comment */ mytable VALUES (1, 'one');",
         "/*! directive*/ INSERT INTO `MyTable` (`Id`, `Name`) "
@@ -35,12 +36,31 @@ def test():
     )
 
 
+def group_sql(args):
+    group_lines(*args.lines)
+
+
+def group_file(args):
+    infile = open(args.filename, 'rt')
+    lines = infile.readlines()
+    infile.close()
+    group_lines(*lines)
+
+
 if __name__ == '__main__':
-    if len(sys.argv) <= 1:
-        sys.exit("Usage: %s [-t | sql_query_string [; sql_query_string ...]]" %
-                 sys.argv[0])
-    if sys.argv[1] == '-t':
-        test()
-    else:
-        queries = sys.argv[1:]
-        main(*queries)
+    main_parser = argparse.ArgumentParser(description='Group')
+    subparsers = main_parser.add_subparsers(help='Commands')
+
+    parser = subparsers.add_parser('sql', help='SQL from command line')
+    parser.add_argument('lines', nargs='+', help='SQL lines')
+    parser.set_defaults(func=group_sql)
+
+    parser = subparsers.add_parser('test', help='SQL from test data')
+    parser.set_defaults(func=group_test)
+
+    parser = subparsers.add_parser('file', help='SQL from a file')
+    parser.add_argument('filename', help='SQL file')
+    parser.set_defaults(func=group_file)
+
+    args = main_parser.parse_args()
+    args.func(args)
