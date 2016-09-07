@@ -2,7 +2,6 @@
 from __future__ import print_function
 
 import argparse
-import sys
 from sqlconvert.process_mysql import process_statement
 from sqlconvert.print_tokens import print_tokens
 from sqlconvert.process_tokens import find_error, StatementGrouper
