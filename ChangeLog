@@ -1,3 +1,14 @@
+Version 0.0.5 (2016-09-07)
+
+    Remove /*! directives */; and newlines after them.
+
+    Join group-{file,sql}.py into demo-group.py
+         parse-{file,sql}.py into demo-parse.py.
+
+    Add demo-process.py.
+
+    Fix: flush buffer and outfile.
+
 Version 0.0.4 (2016-09-04)
 
    Add MySQL-specific remove_directives() and process_statement().
