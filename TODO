@@ -1,6 +1,3 @@
-Fix semicolons and newlines after /*! directives */
-
-
 Convert string escapes to generic SQL, Postgres- or SQLite-specific.
 
 

@@ -8,8 +8,8 @@ import sys
 
 from sqlparse.compat import text_type
 from sqlconvert.print_tokens import print_tokens
-from sqlconvert.process_mysql import process_statement
-from sqlconvert.process_tokens import StatementGrouper
+from sqlconvert.process_mysql import is_directive_statement, process_statement
+from sqlconvert.process_tokens import is_newline_statement, StatementGrouper
 
 from m_lib.defenc import default_encoding
 from m_lib.pbar.tty_pbar import ttyProgressBar
@@ -39,6 +39,7 @@ def main(infile, encoding, outfile, output_encoding, use_pbar):
         cur_pos = 0
 
     grouper = StatementGrouper(encoding=encoding)
+    got_directive = False
     for line in infile:
         if use_pbar:
             if isinstance(line, text_type):
@@ -49,6 +50,14 @@ def main(infile, encoding, outfile, output_encoding, use_pbar):
         grouper.process_line(line)
         if grouper.statements:
             for statement in grouper.get_statements():
+                if got_directive and is_newline_statement(statement):
+                    # Replace a sequence of newlines after a /*! directive */;
+                    # with one newline
+                    #outfile.write(u'\n')
+                    continue
+                got_directive = is_directive_statement(statement)
+                if got_directive:
+                    continue
                 process_statement(statement)
                 print_tokens(statement, outfile=outfile,
                              encoding=output_encoding)
