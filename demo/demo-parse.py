@@ -11,13 +11,13 @@ from sqlconvert.process_tokens import find_error
 def parse_queries(*queries):
     for query in queries:
         for parsed in parse(query, encoding='utf-8'):
-            print("----------")
+            print("----- -----")
             if find_error(parsed):
                 print("ERRORS IN QUERY")
             print_tokens(parsed, encoding='utf-8')
             print()
             parsed._pprint_tree()
-        print("----------")
+        print("-----/-----")
 
 
 def parse_test(_args):
