@@ -1,3 +1,7 @@
+Version 0.0.6 (2016-09-??)
+
+    Condense a sequence of newlines after a /*! directive */;
+
 Version 0.0.5 (2016-09-07)
 
     Remove /*! directives */; and newlines after them.
