@@ -31,7 +31,7 @@ setup(name='sqlconvert',
       platforms=['any'],
       keywords=[''],
       classifiers=[
-          'Development Status :: 1 - Planning',
+          'Development Status :: 2 - Pre-Alpha',
           'Environment :: Console',
           'Intended Audience :: Developers',
           'License :: OSI Approved :: GNU General Public License (GPL)',
