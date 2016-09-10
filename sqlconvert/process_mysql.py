@@ -26,7 +26,7 @@ def is_directive_statement(statement):
     return True
 
 
-def remove_directives(statement):
+def remove_directive_tokens(statement):
     """Remove /*! directives */ from the first-level"""
     new_tokens = []
     for token in statement.tokens:
@@ -50,5 +50,5 @@ def requote_names(token_list):
 
 
 def process_statement(statement):
-    remove_directives(statement)
+    remove_directive_tokens(statement)
     requote_names(statement)

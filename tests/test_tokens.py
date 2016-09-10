@@ -5,7 +5,7 @@ import unittest
 from sqlparse import parse
 
 from sqlconvert.print_tokens import tlist2str
-from sqlconvert.process_mysql import remove_directives, requote_names, \
+from sqlconvert.process_mysql import remove_directive_tokens, requote_names, \
         is_directive_statement, process_statement
 from tests import main
 
@@ -30,7 +30,7 @@ class TestTokens(unittest.TestCase):
 
     def test_directive(self):
         parsed = parse("select /*! test */ * from /* test */ `T`")[0]
-        remove_directives(parsed)
+        remove_directive_tokens(parsed)
         query = tlist2str(parsed)
         self.assertEqual(query, 'SELECT * FROM /* test */ `T`')
 
