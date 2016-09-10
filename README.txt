@@ -5,7 +5,8 @@ License: GPL
 This is sqlconvert, a a library to perform SQL convertions. It uses
 sqlparse to parse SQL.
 
-The library is in its initial phase and currently cannot do much.
+The library is in the early stage of development and currently cannot do
+much.
 
 The first goal is to implemet mysq2sql, a script intended primarily to
 convert mysqldump output (especially with extended INSERT syntax) to

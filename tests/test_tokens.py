@@ -5,8 +5,9 @@ import unittest
 from sqlparse import parse
 
 from sqlconvert.print_tokens import tlist2str
-from sqlconvert.process_mysql import remove_directive_tokens, requote_names, \
-        is_directive_statement, process_statement
+from sqlconvert.process_mysql import remove_directive_tokens, \
+        is_directive_statement, requote_names, unescape_strings, \
+        process_statement
 from tests import main
 
 
@@ -22,17 +23,11 @@ class TestTokens(unittest.TestCase):
         query = tlist2str(parsed)
         self.assertEqual(query, u"INSERT INTO test (1, 'тест')")
 
-    def test_requote(self):
-        parsed = parse("select * from `T`")[0]
-        requote_names(parsed)
-        query = tlist2str(parsed)
-        self.assertEqual(query, 'SELECT * FROM "T"')
-
     def test_directive(self):
         parsed = parse("select /*! test */ * from /* test */ `T`")[0]
         remove_directive_tokens(parsed)
         query = tlist2str(parsed)
-        self.assertEqual(query, 'SELECT * FROM /* test */ `T`')
+        self.assertEqual(query, u'SELECT * FROM /* test */ `T`')
 
     def test_directive_statement(self):
         parsed = parse("/*! test */ test ;")[0]
@@ -40,11 +35,23 @@ class TestTokens(unittest.TestCase):
         parsed = parse("/*! test */ ;")[0]
         self.assertTrue(is_directive_statement(parsed))
 
+    def test_requote(self):
+        parsed = parse("select * from `T`")[0]
+        requote_names(parsed)
+        query = tlist2str(parsed)
+        self.assertEqual(query, u'SELECT * FROM "T"')
+
+    def test_string(self):
+        parsed = parse("insert into test values ('\"test\\\"')")[0]
+        unescape_strings(parsed)
+        query = tlist2str(parsed)
+        self.assertEqual(query, u"INSERT INTO test VALUES ('\"test\"')")
+
     def test_process(self):
         parsed = parse("select /*! test */ * from /* test */ `T`")[0]
         process_statement(parsed)
         query = tlist2str(parsed)
-        self.assertEqual(query, 'SELECT * FROM /* test */ "T"')
+        self.assertEqual(query, u'SELECT * FROM /* test */ "T"')
 
 
 if __name__ == "__main__":

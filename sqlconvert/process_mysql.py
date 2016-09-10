@@ -49,6 +49,21 @@ def requote_names(token_list):
                 token.normalized = token.value = '"%s"' % value
 
 
+def unescape_strings(token_list):
+    """Unescape strings"""
+    for token in token_list.flatten():
+        if token.ttype is T.String.Single:
+            value = token.value
+            for orig, repl in (
+                ('\\"', '"'),
+                ("\\'", "''"),
+                ('\\\032', '\032'),
+            ):
+                value = value.replace(orig, repl)
+            token.normalized = token.value = value
+
+
 def process_statement(statement):
     remove_directive_tokens(statement)
     requote_names(statement)
+    unescape_strings(statement)
