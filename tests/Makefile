@@ -1,4 +1,4 @@
 
 .PHONY: all
 all:
-	./run_all.py
+	python `which pytest`

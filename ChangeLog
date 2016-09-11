@@ -6,6 +6,8 @@ Version 0.0.6 (2016-09-??)
 
     Unescape strings.
 
+    Use pytest for testing.
+
 Version 0.0.5 (2016-09-07)
 
     Remove /*! directives */; and newlines after them.
