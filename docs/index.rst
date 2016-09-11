@@ -11,7 +11,7 @@ This is sqlconvert, a library to implement SQL converters. It uses `sqlparse
 
 The library is in the early stage of development and currently cannot do much.
 
-The first goal is to implement `mysq2sql <mysq2sql.html>`_, a script intended
+The first goal is to implement `mysql2sql <mysql2sql.html>`_, a script intended
 primarily to convert mysqldump (especially with extended INSERT syntax) to
 standard SQL to load at least to PostgreSQL or SQLite.
 
