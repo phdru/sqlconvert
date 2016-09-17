@@ -1,7 +1,6 @@
 
 from pytest import raises
 from sqlconvert.print_tokens import tlist2str
-from sqlconvert.process_mysql import requote_names
 from sqlconvert.process_tokens import StatementGrouper
 
 
@@ -15,12 +14,11 @@ class TestStGrouper(object):
 
     def test_statements(self):
         grouper = StatementGrouper()
-        grouper.process_line("select * from `T`;")
+        grouper.process_line("select * from T;")
         assert grouper.statements
         assert len(grouper.statements) == 1
         for statement in grouper.get_statements():
-            requote_names(statement)
             query = tlist2str(statement)
-            assert query == 'SELECT * FROM "T";'
+            assert query == 'SELECT * FROM T;'
         assert len(grouper.statements) == 0
         assert grouper.close() is None
