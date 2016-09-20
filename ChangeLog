@@ -1,23 +1,23 @@
 Version 0.0.6 (2016-09-??)
 
-    Condense a sequence of newlines after a /*! directive */;
+   Condense a sequence of newlines after a /*! directive */;
 
-    Rename remove_directives -> remove_directive_tokens.
+   Rename remove_directives -> remove_directive_tokens.
 
-    Unescape strings.
+   Unescape strings.
 
-    Use pytest for testing.
+   Use pytest, coverage and tox for testing.
 
 Version 0.0.5 (2016-09-07)
 
-    Remove /*! directives */; and newlines after them.
+   Remove /*! directives */; and newlines after them.
 
-    Join group-{file,sql}.py into demo-group.py
-         parse-{file,sql}.py into demo-parse.py.
+   Join group-{file,sql}.py into demo-group.py
+        parse-{file,sql}.py into demo-parse.py.
 
-    Add demo-process.py.
+   Add demo-process.py.
 
-    Fix: flush buffer and outfile.
+   Fix: flush buffer and outfile.
 
 Version 0.0.4 (2016-09-04)
 
