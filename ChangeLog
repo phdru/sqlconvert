@@ -4,9 +4,9 @@ Version 0.0.6 (2016-09-??)
 
    Rename remove_directives -> remove_directive_tokens.
 
-   Unescape strings.
+   Unescape strings. Add a test for Postgres.
 
-   Use pytest, coverage and tox for testing.
+   Use pytest, coverage, tox and SQLObject for testing.
 
 Version 0.0.5 (2016-09-07)
 
