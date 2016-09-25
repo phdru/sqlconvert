@@ -7,7 +7,8 @@ Welcome to sqlconvert's documentation!
 =====================================
 
 This is sqlconvert, a library to implement SQL converters. It uses `sqlparse
-<https://github.com/andialbrecht/sqlparse>`_ to parse SQL.
+<https://github.com/andialbrecht/sqlparse>`_ to parse SQL and `SQLObject
+<http://sqlobject.org/>`_ to escape SQL strings and handle connections.
 
 The library is in the early stage of development and currently cannot do much.
 
