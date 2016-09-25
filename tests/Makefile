@@ -1,6 +1,6 @@
 
 .PHONY: all
-all: nodb postgres clean
+all: nodb postgres sqlite clean
 
 .PHONY: nodb
 nodb:
@@ -11,6 +11,11 @@ postgres:
 	createdb test
 	PYTHONPATH=.. python -m  pytest -D postgres:///test
 	dropdb test
+
+.PHONY: sqlite
+sqlite:
+	PYTHONPATH=.. python -m  pytest -D sqlite:///tmp/test.sqdb
+	rm -f /tmp/test.sqdb
 
 .PHONY: clean
 clean:
