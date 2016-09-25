@@ -6,7 +6,9 @@ Version 0.0.6 (2016-09-??)
 
    Unescape strings. Add a test for Postgres.
 
-   Use pytest, coverage, tox and SQLObject for testing.
+   Use SQLObject for string quoting and connection handling for tests.
+
+   Use pytest, coverage and tox for testing.
 
 Version 0.0.5 (2016-09-07)
 

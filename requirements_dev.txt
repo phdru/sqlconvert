@@ -3,5 +3,3 @@
 pytest
 pytest-cov
 tox >= 1.8
-SQLObject>=2.2.1; python_version >= '2.6' and python_version < '3.0'
-SQLObject>=3.0.0; python_version >= '3.4'

@@ -1,4 +1,5 @@
 
+from sqlobject.converters import sqlrepr
 from sqlparse import parse
 from sqlparse.compat import PY3
 from sqlparse import tokens as T
@@ -17,6 +18,15 @@ def is_newline_statement(statement):
         if token.ttype is not T.Newline:
             return False
     return True
+
+
+def escape_strings(token_list, dbname):
+    """Escape strings"""
+    for token in token_list.flatten():
+        if token.ttype is T.String.Single:
+            value = token.value[1:-1]  # unquote by removing apostrophes
+            value = sqlrepr(value, dbname)
+            token.normalized = token.value = value
 
 
 if PY3:
