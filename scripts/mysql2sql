@@ -48,18 +48,17 @@ def main(infile, encoding, outfile, output_encoding, use_pbar):
                 cur_pos += len(line)
             pbar.display(cur_pos)
         grouper.process_line(line)
-        if grouper.statements:
-            for statement in grouper.get_statements():
-                if got_directive and is_newline_statement(statement):
-                    # Condense a sequence of newlines after a /*! directive */;
-                    got_directive = False
-                    continue
-                got_directive = is_directive_statement(statement)
-                if got_directive:
-                    continue
-                process_statement(statement)
-                print_tokens(statement, outfile=outfile,
-                             encoding=output_encoding)
+        for statement in grouper.get_statements():
+            if got_directive and is_newline_statement(statement):
+                # Condense a sequence of newlines after a /*! directive */;
+                got_directive = False
+                continue
+            got_directive = is_directive_statement(statement)
+            if got_directive:
+                continue
+            process_statement(statement)
+            print_tokens(statement, outfile=outfile,
+                         encoding=output_encoding)
     tokens = grouper.close()
     if tokens:
         for token in tokens:

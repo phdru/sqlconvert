@@ -11,15 +11,14 @@ def process_lines(*lines):
     grouper = StatementGrouper(encoding='utf-8')
     for line in lines:
         grouper.process_line(line)
-        if grouper.statements:
-            for statement in grouper.get_statements():
-                print("----- -----")
-                if find_error(statement):
-                    print("ERRORS IN QUERY")
-                process_statement(statement)
-                print_tokens(statement, encoding='utf-8')
-                print()
-                statement._pprint_tree()
+        for statement in grouper.get_statements():
+            print("----- -----")
+            if find_error(statement):
+                print("ERRORS IN QUERY")
+            process_statement(statement)
+            print_tokens(statement, encoding='utf-8')
+            print()
+            statement._pprint_tree()
             print("-----/-----")
     tokens = grouper.close()
     if tokens:
