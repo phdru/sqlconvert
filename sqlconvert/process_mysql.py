@@ -56,8 +56,14 @@ def unescape_strings(token_list):
             value = token.value
             for orig, repl in (
                 ('\\"', '"'),
-                ("\\'", "''"),
+                ("\\'", "'"),
+                ("''", "'"),
+                ('\\b', '\b'),
+                ('\\n', '\n'),
+                ('\\r', '\r'),
+                ('\\t', '\t'),
                 ('\\\032', '\032'),
+                ('\\\\', '\\'),
             ):
                 value = value.replace(orig, repl)
             token.normalized = token.value = value

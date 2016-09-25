@@ -43,10 +43,10 @@ def test_requote():
 
 
 def test_string():
-    parsed = parse("insert into test values ('\"te\\'st\\\"')")[0]
+    parsed = parse("insert into test values ('\"te\\'st\\\"\\n')")[0]
     unescape_strings(parsed)
     query = tlist2str(parsed)
-    assert query == u"INSERT INTO test VALUES ('\"te''st\"')"
+    assert query == u"INSERT INTO test VALUES ('\"te''st\"\n')"
 
 
 def test_process():

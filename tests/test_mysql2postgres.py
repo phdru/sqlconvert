@@ -19,11 +19,12 @@ CREATE TABLE test (
 
 def test_mysql2postgres_string():
     connection.query(create_postgres_test_table)
-    parsed = parse("insert into test (id, test_str) "
-                   "values (1, '\"te\\'st\\\"')")[0]
+    parsed = parse("insert into test (id, test_str) values "
+                   "(1, '\"te\\'st\\\"\\n')")[0]
     unescape_strings(parsed)
     query = tlist2str(parsed)
-    assert query == u"INSERT INTO test (id, test_str) VALUES (1, '\"te''st\"')"
+    assert query == u"INSERT INTO test (id, test_str) VALUES " \
+                    u"(1, '\"te''st\"\n')"
     connection.query(query)
     test_str = connection.queryOne("SELECT test_str FROM test WHERE id=1")[0]
-    assert test_str == u"\"te'st\""
+    assert test_str == u"\"te'st\"\n"
