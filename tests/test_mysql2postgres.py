@@ -1,10 +1,13 @@
 from sqlparse import parse
 from sqlobject.tests.dbtest import getConnection
-import py.test
+import pytest
 
 from sqlconvert.print_tokens import tlist2str
 from sqlconvert.process_mysql import unescape_strings
 
+connection = getConnection()
+pytestmark = pytest.mark.skipif(connection.dbName != "postgres",
+                                reason="This test requires PostgreSQL")
 
 create_postgres_test_table = """
 CREATE TABLE test (
@@ -15,9 +18,6 @@ CREATE TABLE test (
 
 
 def test_mysql2postgres_string():
-    connection = getConnection()
-    if connection.dbName != "postgres":
-        py.test.skip("This test requires PostgreSQL")
     connection.query(create_postgres_test_table)
     parsed = parse("insert into test (id, test_str) "
                    "values (1, '\"te\\'st\\\"')")[0]
