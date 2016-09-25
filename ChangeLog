@@ -1,4 +1,4 @@
-Version 0.0.6 (2016-09-??)
+Version 0.0.6 (2016-09-25)
 
    Condense a sequence of newlines after a /*! directive */;
 
