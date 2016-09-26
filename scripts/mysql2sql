@@ -25,7 +25,7 @@ def get_fsize(fp):
     return size
 
 
-def main(infile, encoding, outfile, output_encoding, use_pbar):
+def main(infile, encoding, outfile, output_encoding, use_pbar, quoting_style):
     if use_pbar:
         size = get_fsize(infile)
         if size is None:
@@ -56,7 +56,7 @@ def main(infile, encoding, outfile, output_encoding, use_pbar):
             got_directive = is_directive_statement(statement)
             if got_directive:
                 continue
-            process_statement(statement)
+            process_statement(statement, quoting_style)
             print_tokens(statement, outfile=outfile,
                          encoding=output_encoding)
     tokens = grouper.close()
@@ -76,12 +76,26 @@ if __name__ == '__main__':
                         help='separate output encoding, default is the same '
                         'as -e except for console; for console output '
                         'charset from the current locale is used')
+    parser.add_argument('-m', '--mysql', action='store_true',
+                        help='MySQL/MariaDB quoting style')
+    parser.add_argument('-p', '--pg', '--postgres', action='store_true',
+                        help='PostgreSQL quoting style')
+    parser.add_argument('-s', '--sqlite', action='store_true',
+                        help='Generic SQL/SQLite quoting style; '
+                        'this is the default')
     parser.add_argument('-o', '--outfile', help='output file name')
     parser.add_argument('-P', '--no-pbar', action='store_true',
                         help='inhibit progress bar')
     parser.add_argument('infile', help='input file name')
     parser.add_argument('output_file', nargs='?', help='output file name')
     args = parser.parse_args()
+
+    if int(args.mysql) + int(args.postgres) + int(args.sqlite) > 1:
+        print("Error: options -m/-p/-s are mutually incompatible, "
+              "use only one of them",
+              file=sys.stderr)
+        parser.print_help()
+        sys.exit(1)
 
     if args.infile:
         if args.infile == '-':
@@ -127,4 +141,12 @@ if __name__ == '__main__':
                 infile.close()
             raise
 
-    main(infile, args.encoding, outfile, output_encoding, not args.no_pbar)
+    if args.mysql:
+        quoting_style = 'mysql'
+    elif args.postgres:
+        quoting_style = 'postgres'
+    else:
+        quoting_style = 'sqlite'
+
+    main(infile, args.encoding, outfile, output_encoding, not args.no_pbar,
+         quoting_style)

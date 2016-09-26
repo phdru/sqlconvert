@@ -6,8 +6,8 @@ convert mysqldump (especially with extended INSERT syntax) to standard
 SQL to load at least to PostgreSQL or SQLite.
 
 The program is in the early stage of development and currently cannot do much.
-It removes /\*! directives \*/, unescapes strings and passes everything else
-unmodified.
+It removes /\*! directives \*/, unescapes strings and escapes them to a
+different quoting style, and passes everything else unmodified.
 
 
 .. highlight:: none
@@ -20,7 +20,7 @@ mysql2sql
 
 Usage::
 
-    mysql2sql [-e encoding] [-E output_encoding] [infile] [[-o] outfile]
+    mysql2sql [-e encoding] [-E output_encoding] [-m/-p/-s] [infile] [[-o] outfile]
 
 Options::
 
@@ -30,9 +30,20 @@ Options::
                            separate output encoding, default is the same as
                            `-e` except for console; for console output charset
                            from the current locale is used
+    -m, --mysql            MySQL/MariaDB quoting style
+    -p, --pg, --postgres   PostgreSQL quoting style
+    -s, --sqlite           Generic SQL/SQLite quoting style (default)
     -P, --no-pbar          Inhibit progress bar
     infile                 Input file, stdin if absent or '-'
     -o, --outfile outfile  Output file, stdout if absent or '-'
+
+Options `-m/-p/-s` change quoting style. `-m` sets MySQL quoting style; it's
+added to use the program in the following scenario: convert MySQL dumps with
+extended INSERTs to SQL with plain INSERTS suitable to be fed back to MySQL.
+`-p` sets PostgreSQL quoting style; it's like MySQL with additional `E''-style
+quoting
+<https://www.postgresql.org/docs/9.1/static/sql-syntax-lexical.html#SQL-SYNTAX-STRINGS-ESCAPE>`_.
+`-s` sets generic SQL/SQLite quoting style; this is the default.
 
 If stderr is connected to the console the program displays a text mode progress
 bar. Option `-P/--no-pbar` inhibits it.

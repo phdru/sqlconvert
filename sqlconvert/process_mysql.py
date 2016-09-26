@@ -1,6 +1,7 @@
 
 from sqlparse.sql import Comment
 from sqlparse import tokens as T
+from .process_tokens import escape_strings
 
 
 def _is_directive_token(token):
@@ -69,7 +70,8 @@ def unescape_strings(token_list):
             token.normalized = token.value = value
 
 
-def process_statement(statement):
+def process_statement(statement, quoting_style='sqlite'):
     remove_directive_tokens(statement)
     requote_names(statement)
     unescape_strings(statement)
+    escape_strings(statement, quoting_style)
