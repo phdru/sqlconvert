@@ -5,6 +5,8 @@ import sys
 def print_tokens(token_list, outfile=sys.stdout, encoding=None):
     if encoding:
         buffer = getattr(outfile, 'buffer', outfile)
+    else:
+        buffer = outfile
     for token in token_list.flatten():
         normalized = token.normalized
         if encoding:
