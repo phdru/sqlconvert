@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
+from pytest import raises
 from sqlparse import parse
 
 from sqlconvert.print_tokens import tlist2str
 from sqlconvert.process_mysql import remove_directive_tokens, \
         is_directive_statement, requote_names, unescape_strings, \
         process_statement
-from sqlconvert.process_tokens import escape_strings
+from sqlconvert.process_tokens import escape_strings, StatementGrouper
 
 
 def test_encoding():
@@ -71,3 +72,23 @@ def test_process():
     process_statement(parsed)
     query = tlist2str(parsed)
     assert query == u'SELECT * FROM /* test */ "T"'
+
+
+def test_incomplete():
+    grouper = StatementGrouper()
+    grouper.process_line("select * from `T`")
+    assert not grouper.statements
+    assert len(grouper.statements) == 0
+    raises(ValueError, grouper.close)
+
+
+def test_statements():
+    grouper = StatementGrouper()
+    grouper.process_line("select * from T;")
+    assert grouper.statements
+    assert len(grouper.statements) == 1
+    for statement in grouper.get_statements():
+        query = tlist2str(statement)
+        assert query == 'SELECT * FROM T;'
+    assert len(grouper.statements) == 0
+    assert grouper.close() is None
