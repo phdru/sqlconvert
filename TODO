@@ -1,4 +1,1 @@
-Convert string escapes to generic SQL, Postgres- or SQLite-specific.
-
-
 Convert extended INSERTs to series of plain INSERTs.
