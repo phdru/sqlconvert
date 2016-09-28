@@ -64,7 +64,7 @@ class StatementGrouper(object):
         for stmt in self.statements:
             yield stmt
         self.statements = []
-        raise StopIteration
+        return
 
     def close(self):
         if not self.lines:
