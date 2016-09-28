@@ -75,3 +75,5 @@ def process_statement(statement, quoting_style='sqlite'):
     requote_names(statement)
     unescape_strings(statement)
     escape_strings(statement, quoting_style)
+    yield statement
+    return

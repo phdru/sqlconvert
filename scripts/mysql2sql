@@ -56,9 +56,9 @@ def main(infile, encoding, outfile, output_encoding, use_pbar, quoting_style):
             got_directive = is_directive_statement(statement)
             if got_directive:
                 continue
-            process_statement(statement, quoting_style)
-            print_tokens(statement, outfile=outfile,
-                         encoding=output_encoding)
+            for statement in process_statement(statement, quoting_style):
+                print_tokens(statement, outfile=outfile,
+                             encoding=output_encoding)
     tokens = grouper.close()
     if tokens:
         for token in tokens:

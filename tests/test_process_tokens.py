@@ -69,8 +69,8 @@ def test_escape_string_sqlite():
 
 def test_process():
     parsed = parse("select /*! test */ * from /* test */ `T`")[0]
-    process_statement(parsed)
-    query = tlist2str(parsed)
+    statement = next(process_statement(parsed))
+    query = tlist2str(statement)
     assert query == u'SELECT * FROM /* test */ "T"'
 
 
