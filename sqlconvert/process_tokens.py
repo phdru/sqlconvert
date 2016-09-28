@@ -75,4 +75,6 @@ class StatementGrouper(object):
                                     T.Newline, T.Whitespace)):
                 raise ValueError("Incomplete SQL statement: %s" %
                                  tokens)
+        self.lines = []
+        self.statements = []
         return tokens
