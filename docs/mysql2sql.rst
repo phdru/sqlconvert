@@ -6,7 +6,8 @@ convert mysqldump (especially with extended INSERT syntax) to standard
 SQL to load at least to PostgreSQL or SQLite.
 
 The program is in the early stage of development and currently cannot do much.
-It removes /\*! directives \*/, unescapes strings and escapes them to a
+It removes /\*! directives \*/, unquotes names quoted with backticks, quote
+non-lowercase names with double quotes, unescapes strings and escapes them to a
 different quoting style, and passes everything else unmodified.
 
 
