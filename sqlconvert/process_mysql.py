@@ -71,9 +71,9 @@ def unescape_strings(token_list):
 
 
 def process_statement(statement, quoting_style='sqlite'):
-    remove_directive_tokens(statement)
     requote_names(statement)
     unescape_strings(statement)
+    remove_directive_tokens(statement)
     escape_strings(statement, quoting_style)
     yield statement
     return
