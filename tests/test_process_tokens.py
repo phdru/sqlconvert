@@ -4,7 +4,12 @@ from pytest import raises
 from sqlparse import parse
 
 from sqlconvert.print_tokens import tlist2str
-from sqlconvert.process_tokens import StatementGrouper
+from sqlconvert.process_tokens import is_newline_statement, StatementGrouper
+
+
+def test_newline_statement():
+    parsed = parse("\n")[0]
+    assert is_newline_statement(parsed)
 
 
 def test_encoding():
