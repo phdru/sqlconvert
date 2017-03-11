@@ -13,6 +13,11 @@ def find_error(token_list):
     return False
 
 
+def is_comment_or_space(token):
+    return token.ttype in (T.Comment.Single, T.Comment.Multiline,
+                           T.Newline, T.Whitespace)
+
+
 def is_newline_statement(statement):
     for token in statement.tokens[:]:
         if token.ttype is not T.Newline:
@@ -50,8 +55,7 @@ class StatementGrouper(object):
         last_stmt = statements[-1]
         for i in xrange(len(last_stmt.tokens) - 1, 0, -1):
             token = last_stmt.tokens[i]
-            if token.ttype in (T.Comment.Single, T.Comment.Multiline,
-                               T.Newline, T.Whitespace):
+            if is_comment_or_space(token):
                 continue
             if token.ttype is T.Punctuation and token.value == ';':
                 break  # The last statement is complete
@@ -71,8 +75,7 @@ class StatementGrouper(object):
             return
         tokens = parse(''.join(self.lines), encoding=self.encoding)
         for token in tokens:
-            if (token.ttype not in (T.Comment.Single, T.Comment.Multiline,
-                                    T.Newline, T.Whitespace)):
+            if not is_comment_or_space(token):
                 raise ValueError("Incomplete SQL statement: %s" %
                                  tokens)
         self.lines = []
