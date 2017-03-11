@@ -1,7 +1,7 @@
 
 from sqlparse.sql import Comment
 from sqlparse import tokens as T
-from .process_tokens import escape_strings
+from .process_tokens import escape_strings, is_comment_or_space
 
 
 def _is_directive_token(token):
@@ -68,6 +68,13 @@ def unescape_strings(token_list):
             ):
                 value = value.replace(orig, repl)
             token.normalized = token.value = value
+
+
+def is_insert(statement):
+    for token in statement.tokens:
+        if is_comment_or_space(token):
+            continue
+        return (token.ttype is T.DML) and (token.normalized == 'INSERT')
 
 
 def process_statement(statement, quoting_style='sqlite'):

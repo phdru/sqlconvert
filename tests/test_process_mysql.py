@@ -5,7 +5,7 @@ from sqlparse import parse
 from sqlconvert.print_tokens import tlist2str
 from sqlconvert.process_mysql import remove_directive_tokens, \
         is_directive_statement, requote_names, unescape_strings, \
-        process_statement
+        is_insert, process_statement
 from sqlconvert.process_tokens import escape_strings
 
 
@@ -51,6 +51,15 @@ def test_escape_string_sqlite():
     escape_strings(parsed, 'sqlite')
     query = tlist2str(parsed)
     assert query == u"INSERT INTO test VALUES ('\"te''st\"\n')"
+
+
+def test_is_insert():
+    parsed = parse("select /*! test */ * from /* test */ `T`")[0]
+    statement = next(process_statement(parsed))
+    assert not is_insert(statement)
+    parsed = parse("insert into test values ('\"te\\'st\\\"\\n')")[0]
+    statement = next(process_statement(parsed))
+    assert is_insert(statement)
 
 
 def test_process():
