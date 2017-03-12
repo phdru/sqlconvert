@@ -2,13 +2,13 @@ mysql2sql
 =========
 
 This is mysql2sql, a mysql to sql converter. It is primary intended to
-convert mysqldump (especially with extended INSERT syntax) to standard
-SQL to load at least to PostgreSQL or SQLite.
+convert mysqldump (especially with extended INSERT syntax) to standard SQL
+to load at least to PostgreSQL or SQLite.
 
-The program is in the early stage of development and currently cannot do much.
-It removes /\*! directives \*/, unquotes names quoted with backticks, quote
-non-lowercase names with double quotes, unescapes strings and escapes them to a
-different quoting style, and passes everything else unmodified.
+The program is in the early stage of development and currently cannot do
+much. It removes /\*! directives \*/, unquotes names quoted with backticks,
+quote non-lowercase names with double quotes, unescapes strings and escapes
+them to a different quoting style, and passes everything else unmodified.
 
 
 .. highlight:: none
@@ -38,16 +38,16 @@ Options::
     infile                 Input file, stdin if absent or '-'
     -o, --outfile outfile  Output file, stdout if absent or '-'
 
-Options `-m/-p/-s` change quoting style. `-m` sets MySQL quoting style; it's
-added to use the program in the following scenario: convert MySQL dumps with
-extended INSERTs to SQL with plain INSERTS suitable to be fed back to MySQL.
-`-p` sets PostgreSQL quoting style; it's like MySQL with additional `E''-style
-quoting
+Options `-m/-p/-s` change quoting style. `-m` sets MySQL quoting style;
+it's added to use the program in the following scenario: convert MySQL
+dumps with extended INSERTs to SQL with plain INSERTS suitable to be fed
+back to MySQL. `-p` sets PostgreSQL quoting style; it's like MySQL with
+additional `E''-style quoting
 <https://www.postgresql.org/docs/9.1/static/sql-syntax-lexical.html#SQL-SYNTAX-STRINGS-ESCAPE>`_.
 `-s` sets generic SQL/SQLite quoting style; this is the default.
 
-If stderr is connected to the console the program displays a text mode progress
-bar. Option `-P/--no-pbar` inhibits it.
+If stderr is connected to the console the program displays a text mode
+progress bar. Option `-P/--no-pbar` inhibits it.
 
 Option `-o` is useful when infile is absent (input is redirected), for
 example::

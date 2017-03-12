@@ -6,15 +6,17 @@
 Welcome to sqlconvert's documentation!
 =====================================
 
-This is sqlconvert, a library to implement SQL converters. It uses `sqlparse
+sqlconvert is a library to implement SQL converters. It uses `sqlparse
 <https://github.com/andialbrecht/sqlparse>`_ to parse SQL and `SQLObject
-<http://sqlobject.org/>`_ to escape SQL strings and handle connections.
+<http://sqlobject.org/>`_ to escape SQL strings and handle connections to
+DB backends.
 
-The library is in the early stage of development and currently cannot do much.
+The library is in the early stage of development and currently cannot do
+much.
 
-The first goal is to implement `mysql2sql <mysql2sql.html>`_, a script intended
-primarily to convert mysqldump (especially with extended INSERT syntax) to
-standard SQL to load at least to PostgreSQL or SQLite.
+The first goal is to implement `mysql2sql <mysql2sql.html>`_, a script
+intended primarily to convert mysqldump (especially with extended INSERT
+syntax) to standard SQL to load at least to PostgreSQL or SQLite.
 
 Contents:
 
@@ -37,7 +39,7 @@ Credits
 
 Created by Oleg Broytman <phd@phdru.name>.
 
-Copyright (C) 2016 PhiloSoft Design.
+Copyright (C) 2016-2017 PhiloSoft Design.
 
 
 License

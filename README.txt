@@ -1,10 +1,10 @@
-Broytman SQL converter, Copyright (C) 2016 PhiloSoft Design
-Author: Oleg Broytman <phd@phdru.name>
-License: GPL
+Broytman SQL converter, Copyright (C) 2016-2017 PhiloSoft Design.
+Author: Oleg Broytman <phd@phdru.name>.
+License: GPL.
 
-This is sqlconvert, a library to perform SQL conversions. It uses
-sqlparse to parse SQL and SQLObject to escape SQL strings and handle
-connections.
+sqlconvert is a library to perform SQL conversions. It uses sqlparse to
+parse SQL and SQLObject to escape SQL strings and handle connections to DB
+backends.
 
 The library is in the early stage of development and currently cannot do
 much.
