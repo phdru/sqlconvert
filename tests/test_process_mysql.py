@@ -57,9 +57,40 @@ def test_is_insert():
     parsed = parse("select /*! test */ * from /* test */ `T`")[0]
     statement = next(process_statement(parsed))
     assert not is_insert(statement)
+
     parsed = parse("insert into test values ('\"te\\'st\\\"\\n')")[0]
     statement = next(process_statement(parsed))
     assert is_insert(statement)
+
+
+def test_split_ext_insert():
+    parsed = parse("insert into test values (1, 2)")[0]
+    statement = next(process_statement(parsed))
+    query = tlist2str(statement)
+    assert query == u"INSERT INTO test VALUES (1, 2)"
+
+    parsed = parse("insert into test (age, salary) values (1, 2);")[0]
+    statement = next(process_statement(parsed))
+    query = tlist2str(statement)
+    assert query == u"INSERT INTO test (age, salary) VALUES (1, 2);"
+
+    parsed = parse("insert into test values (1, 2), (3, 4);")[0]
+    stiter = process_statement(parsed)
+    statement = next(stiter)
+    query = tlist2str(statement)
+    assert query == u"INSERT INTO test VALUES  (1, 2);"
+    statement = next(stiter)
+    query = tlist2str(statement)
+    assert query == u"INSERT INTO test VALUES  (3, 4);"
+
+    parsed = parse("insert into test (age, salary) values (1, 2), (3, 4)")[0]
+    stiter = process_statement(parsed)
+    statement = next(stiter)
+    query = tlist2str(statement)
+    assert query == u"INSERT INTO test (age, salary) VALUES  (1, 2)"
+    statement = next(stiter)
+    query = tlist2str(statement)
+    assert query == u"INSERT INTO test (age, salary) VALUES  (3, 4)"
 
 
 def test_process():
