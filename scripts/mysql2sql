@@ -90,7 +90,7 @@ if __name__ == '__main__':
     parser.add_argument('output_file', nargs='?', help='output file name')
     args = parser.parse_args()
 
-    if int(args.mysql) + int(args.postgres) + int(args.sqlite) > 1:
+    if int(args.mysql) + int(args.pg) + int(args.sqlite) > 1:
         print("Error: options -m/-p/-s are mutually incompatible, "
               "use only one of them",
               file=sys.stderr)
@@ -143,7 +143,7 @@ if __name__ == '__main__':
 
     if args.mysql:
         quoting_style = 'mysql'
-    elif args.postgres:
+    elif args.pg:
         quoting_style = 'postgres'
     else:
         quoting_style = 'sqlite'
