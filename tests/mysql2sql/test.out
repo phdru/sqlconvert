@@ -1,0 +1,15 @@
+SELECT * FROM mytable; -- line-comment"
+
+INSERT INTO /* inline comment */ mytable VALUES (1, 'тест');
+
+
+INSERT INTO "MyTable" ("Id", "Name")
+VALUES (1, 'one');
+
+INSERT INTO mytable VALUES  (1, 'one');
+INSERT INTO mytable VALUES  (2, 'two');
+
+INSERT INTO mytable (id, name) VALUES  (1, 'one');
+INSERT INTO mytable (id, name) VALUES  (2, 'two');
+
+-- The end
