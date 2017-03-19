@@ -1,5 +1,6 @@
 
-from sqlparse.sql import Comment, Function, Identifier, Parenthesis, Statement
+from sqlparse.sql import Comment, Function, Identifier, Parenthesis, \
+    Statement, Token
 from sqlparse import tokens as T
 from .process_tokens import escape_strings, is_comment_or_space
 
@@ -81,11 +82,14 @@ def split_ext_insert(statement):
     """Split extended INSERT into multiple standard INSERTs"""
     insert_tokens = []
     values_tokens = []
-    last_token = None
+    end_tokens = []
     expected = 'INSERT'
     for token in statement.tokens:
         if is_comment_or_space(token):
-            insert_tokens.append(token)
+            if expected == 'END':
+                end_tokens.append(token)
+            else:
+                insert_tokens.append(token)
             continue
         elif expected == 'INSERT':
             if (token.ttype is T.DML) and (token.normalized == 'INSERT'):
@@ -115,18 +119,22 @@ def split_ext_insert(statement):
                 if token.value == ',':
                     continue
                 elif token.value == ';':
-                    last_token = token
-                    break
+                    end_tokens.append(token)
+                    expected = 'END'
+                    continue
         raise ValueError(
             'SQL syntax error: expected "%s", got %s "%s"' % (
                 expected, token.ttype, token.normalized))
-    for values in values_tokens:
+    new_line = Token(T.Newline, '\n')
+    new_lines = [new_line]  # Insert newlines between split statements
+    for i, values in enumerate(values_tokens):
+        if i == len(values_tokens) - 1:  # Last but one statement
+            # Insert newlines only between split statements but not after
+            new_lines = []
         # The statemnt sets `parent` attribute of the every token to self
         # but we don't care.
-        vl = [values]
-        if last_token:
-            vl.append(last_token)
-        statement = Statement(insert_tokens + vl)
+        statement = Statement(insert_tokens + [values] +
+                              end_tokens + new_lines)
         yield statement
 
 

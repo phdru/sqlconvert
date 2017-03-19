@@ -78,7 +78,7 @@ def test_split_ext_insert():
     stiter = process_statement(parsed)
     statement = next(stiter)
     query = tlist2str(statement)
-    assert query == u"INSERT INTO test VALUES  (1, 2);"
+    assert query == u"INSERT INTO test VALUES  (1, 2);\n"
     statement = next(stiter)
     query = tlist2str(statement)
     assert query == u"INSERT INTO test VALUES  (3, 4);"
@@ -87,7 +87,7 @@ def test_split_ext_insert():
     stiter = process_statement(parsed)
     statement = next(stiter)
     query = tlist2str(statement)
-    assert query == u"INSERT INTO test (age, salary) VALUES  (1, 2)"
+    assert query == u"INSERT INTO test (age, salary) VALUES  (1, 2)\n"
     statement = next(stiter)
     query = tlist2str(statement)
     assert query == u"INSERT INTO test (age, salary) VALUES  (3, 4)"
