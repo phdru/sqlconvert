@@ -1,1 +1,0 @@
-Convert extended INSERTs to series of plain INSERTs.
