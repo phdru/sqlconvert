@@ -1,3 +1,9 @@
+Version 0.1.0 (2017-03-19)
+
+   Split extended INSERTs (mysql2sql script).
+
+   Extend tests.
+
 Version 0.0.8 (2017-03-18)
 
    Split extended INSERTs (library and tests, scripts will be extended later).
