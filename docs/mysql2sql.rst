@@ -5,10 +5,11 @@ This is mysql2sql, a mysql to sql converter. It is primary intended to
 convert mysqldump (especially with extended INSERT syntax) to standard SQL
 to load at least to PostgreSQL or SQLite.
 
-The program is in the early stage of development and currently cannot do
-much. It removes /\*! directives \*/, unquotes names quoted with backticks,
-quote non-lowercase names with double quotes, unescapes strings and escapes
-them to a different quoting style, and passes everything else unmodified.
+The program removes /\*! directives \*/, unquotes names quoted with
+backticks, quote non-lowercase names with double quotes, unescapes strings
+and escapes them to a different quoting style, and splits extended INSERTs
+into a series of plain INSERTs separated by newlines. Everything else is
+passed unmodified.
 
 
 .. highlight:: none
