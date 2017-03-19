@@ -16,7 +16,7 @@ flake8:
 
 .PHONY: docs
 docs:
-	$(MAKE) -C docs html
+	cd docs && exec ./rebuild
 
 .PHONY: test
 test:

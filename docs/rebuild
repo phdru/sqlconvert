@@ -1,0 +1,4 @@
+#! /bin/sh
+
+SPHINXBUILD="`which sphinx-build`"
+PYTHONPATH=.. exec make SPHINXBUILD="python $SPHINXBUILD" html
