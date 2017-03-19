@@ -1,4 +1,5 @@
 
+from sqlparse.sql import Comment
 from sqlobject.converters import sqlrepr
 from sqlparse import parse
 from sqlparse.compat import PY3
@@ -14,8 +15,9 @@ def find_error(token_list):
 
 
 def is_comment_or_space(token):
-    return token.ttype in (T.Comment.Single, T.Comment.Multiline,
-                           T.Newline, T.Whitespace)
+    return isinstance(token, Comment) or \
+        token.ttype in (T.Comment, T.Comment.Single, T.Comment.Multiline,
+                        T.Newline, T.Whitespace)
 
 
 def is_newline_statement(statement):
