@@ -32,8 +32,11 @@ def main(infile, encoding, outfile, output_encoding, use_pbar, quoting_style):
             use_pbar = False
 
     if use_pbar:
-        print("Converting: ", end='', file=sys.stderr)
-    sys.stderr.flush()
+        print("Converting", end='', file=sys.stderr)
+        if infile.name != '<stdin>':
+            print(' ' + infile.name, end='', file=sys.stderr)
+        print(": ", end='', file=sys.stderr)
+        sys.stderr.flush()
 
     if use_pbar:
         pbar = ttyProgressBar(0, size-1)
