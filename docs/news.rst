@@ -1,0 +1,72 @@
+News
+====
+
+Version 0.1.0 (2017-03-19)
+--------------------------
+
+* Split extended INSERTs (mysql2sql script).
+
+* Extend tests.
+
+Version 0.0.8 (2017-03-18)
+--------------------------
+
+* Split extended INSERTs (library and tests, scripts will be extended later).
+
+* Extend tests, increase test coverage.
+
+Version 0.0.7 (2016-09-27)
+--------------------------
+
+* Change quoting style to MySQL, PostgreSQL or SQLite.
+
+* Add a test for print_tokens().
+
+Version 0.0.6 (2016-09-25)
+--------------------------
+
+* Condense a sequence of newlines after a /\*! directive \*/;
+
+* Rename remove_directives -> remove_directive_tokens.
+
+* Unescape strings. Add a test for Postgres.
+
+* Use SQLObject for string quoting and connection handling for tests.
+
+* Use pytest, coverage and tox for testing.
+
+* Add tests for Postgres and SQLite.
+
+Version 0.0.5 (2016-09-07)
+--------------------------
+
+* Remove /\*! directives \*/; and newlines after them.
+
+* Join group-{file,sql}.py into demo-group.py
+* parse-{file,sql}.py into demo-parse.py.
+
+* Add demo-process.py.
+
+* Fix: flush buffer and outfile.
+
+Version 0.0.4 (2016-09-04)
+--------------------------
+
+* Add MySQL-specific remove_directives() and process_statement().
+
+Version 0.0.3 (2016-09-04)
+--------------------------
+
+* Rename the project: mysql2py -> sqlconvert.
+
+Version 0.0.2 (2016-09-04)
+--------------------------
+
+* Rename mysql-to-sql.py -> mysql2py.
+
+* Display progress bar.
+
+Version 0.0.1 (2016-09-03)
+--------------------------
+
+* First release. Setup, tests and docs infrastructure.

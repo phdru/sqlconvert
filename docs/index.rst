@@ -23,6 +23,7 @@ Contents:
 .. toctree::
    :maxdepth: 1
 
+   news
    mysql2sql
 
 
