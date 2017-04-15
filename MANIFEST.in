@@ -1,4 +1,4 @@
 global-include Makefile *.py *.rst *.txt
-include docs/genapidocs COPYING ChangeLog MANIFEST.in TODO mk-distr tox.ini
+include docs/genapidocs COPYING MANIFEST.in TODO mk-distr tox.ini
 include demo/demo.sql scripts/mysql2sql tests/mysql2sql/test.out
 recursive-include docs *.css *.js *.html *.gif *.png
