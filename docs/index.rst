@@ -23,8 +23,9 @@ Contents:
 .. toctree::
    :maxdepth: 1
 
-   news
+   install
    mysql2sql
+   news
 
 
 Indices and tables
