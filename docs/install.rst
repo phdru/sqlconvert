@@ -6,14 +6,15 @@ System-wide
 
 ::
 
-    sudo pip install --find-links=http://phdru.name/Software/Python/ --no-index --install-option='-O2' sqlconvert
+    sudo pip install --trusted-host phdru.name --find-links=http://phdru.name/Software/Python/ --install-option='-O2' sqlconvert
+
 
 User mode
 ---------
 
 ::
 
-    pip install --find-links=http://phdru.name/Software/Python/ --no-index --install-option='-O2' --user sqlconvert
+    pip install --trusted-host phdru.name --find-links=http://phdru.name/Software/Python/ --install-option='-O2' --user sqlconvert
 
 For Python 2.6 the command is easy_install.
 
