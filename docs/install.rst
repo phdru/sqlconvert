@@ -16,6 +16,13 @@ User mode
 
     pip install --trusted-host phdru.name --find-links=http://phdru.name/Software/Python/ --install-option='-O2' --user sqlconvert
 
+Virtual envs
+------------
+
+::
+
+    pip install --trusted-host phdru.name --find-links=http://phdru.name/Software/Python/ --install-option='-O2' sqlconvert
+
 For Python 2.6 the command is easy_install.
 
 Installation from sources
