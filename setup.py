@@ -40,5 +40,5 @@ setup(name='sqlconvert',
       packages=['sqlconvert'],
       package_data={},
       scripts=['scripts/mysql2sql'],
-      requires=['sqlparse', 'SQLObject', 'm_lib'],
+      requires=['sqlparse', 'SQLObject', 'm_lib.defenc', 'm_lib'],
       )
