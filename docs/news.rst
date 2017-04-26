@@ -1,6 +1,11 @@
 News
 ====
 
+Version 0.1.1 (2017-04-26)
+--------------------------
+
+* Install m_lib.defenc and m_lib from PyPI.
+
 Version 0.1.0 (2017-03-19)
 --------------------------
 
