@@ -15,6 +15,12 @@ load_source('sqlconvert_version', versionpath)
 # Ignore: E402 module level import not at top of file
 from sqlconvert_version import __version__  # noqa
 
+kw = {}
+if is_setuptools:
+    kw['install_requires'] = [
+        'sqlparse', 'SQLObject>=2.2.1', 'm_lib.defenc>=1.0', 'm_lib>=3.1',
+    ]
+
 setup(name='sqlconvert',
       version=__version__,
       description='Broytman sqlconvert',
@@ -40,5 +46,5 @@ setup(name='sqlconvert',
       packages=['sqlconvert'],
       package_data={},
       scripts=['scripts/mysql2sql'],
-      requires=['sqlparse', 'SQLObject', 'm_lib.defenc', 'm_lib'],
+      **kw
       )
