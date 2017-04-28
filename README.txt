@@ -12,3 +12,9 @@ much.
 The first goal is to implement mysql2sql, a script intended primarily to
 convert mysqldump output (especially with extended INSERT syntax) to
 standard SQL to load at least to PostgreSQL or SQLite.
+
+Home Page:     http://phdru.name/Software/Python/sqlconvert/
+Documentation: http://phdru.name/Software/Python/sqlconvert/docs/
+Git repo:      http://git.phdru.name/sqlconvert.git/
+GitHub repo:   https://github.com/phdru/sqlconvert
+Issue tracker: https://github.com/phdru/sqlconvert/issues
