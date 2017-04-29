@@ -1,0 +1,29 @@
+# Config file for automatic testing at travis-ci.org
+
+# Only test master and pull requests; skip tags.
+# Other branches can allow themselves.
+branches:
+  only:
+    - master
+
+# Prefer docker containers
+sudo: required
+
+language: python
+
+python:
+  - "3.6"
+
+cache: pip
+
+env:
+  - TOXENV=py27
+  - TOXENV=py34
+  - TOXENV=py35
+  - TOXENV=py36
+
+install:
+  - travis_retry pip install tox
+
+script:
+  - tox
