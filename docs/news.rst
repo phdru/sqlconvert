@@ -6,7 +6,7 @@ Version 0.2.0 (2017-05-??)
 
 * Python 3.5, 3.6.
 
-* Test at Travis.
+* Test at Travis and AppVeyor.
 
 Version 0.1.2 (2017-04-27)
 --------------------------
