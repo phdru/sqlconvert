@@ -26,7 +26,7 @@ if is_setuptools:
 setup(name='sqlconvert',
       version=__version__,
       description='Broytman sqlconvert',
-      long_description=open('README.txt', 'rU').read(),
+      long_description=open('README.rst', 'rU').read(),
       author='Oleg Broytman',
       author_email='phd@phdru.name',
       url='http://phdru.name/Software/Python/',
