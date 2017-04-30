@@ -60,7 +60,7 @@ install:
   - "pip --version"
   - "pip install tox"
 
-# No build step - _namemapper extension will be built under tox
+# No build step - we don't have C extensions
 build: false
 
 test_script:
