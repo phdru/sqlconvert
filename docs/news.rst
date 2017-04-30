@@ -8,6 +8,8 @@ Version 0.2.0 (2017-05-??)
 
 * Test at Travis and AppVeyor.
 
+* Use Portable Python Utilities.
+
 Version 0.1.2 (2017-04-27)
 --------------------------
 

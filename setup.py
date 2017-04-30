@@ -18,7 +18,9 @@ from sqlconvert_version import __version__  # noqa
 kw = {}
 if is_setuptools:
     kw['install_requires'] = [
-        'sqlparse', 'SQLObject>=2.2.1', 'm_lib.defenc>=1.0', 'm_lib>=3.1',
+        'sqlparse', 'SQLObject>=2.2.1',
+        'm_lib.defenc>=1.0', 'm_lib>=3.1',
+        'ppu'
     ]
 
 setup(name='sqlconvert',
