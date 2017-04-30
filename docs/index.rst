@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to sqlconvert's documentation!
-=====================================
+sqlconvert's documentation
+==========================
 
 sqlconvert is a library to implement SQL converters. It uses `sqlparse
 <https://github.com/andialbrecht/sqlparse>`_ to parse SQL and `SQLObject
