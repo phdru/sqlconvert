@@ -1,1 +1,9 @@
 Test at Travis and AppVeyor with Postgres.
+
+
+In SQLite/Postgres (non-MySQL) mode:
+
+   Remove table options like ENGINE, AUTO_INCREMENT, CHARSET, etc:
+   CREATE TABLE name (column_definitions) table_options;
+
+   Remove LOCK/UNLOCK TABLES;
