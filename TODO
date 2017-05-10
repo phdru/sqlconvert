@@ -3,6 +3,11 @@ Test at Travis and AppVeyor with Postgres.
 
 In SQLite/Postgres (non-MySQL) mode:
 
+   Replace AUTO_INCREMENT columns with INTEGER PRIMARY KEY for SQLite or
+   serial for Postgres.
+
+   Remove CHARACTER SET, COLLATE and COMMENT from column definitions.
+
    Remove table options like ENGINE, AUTO_INCREMENT, CHARSET, etc:
    CREATE TABLE name (column_definitions) table_options;
 
