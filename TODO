@@ -23,3 +23,6 @@ In SQLite/Postgres (non-MySQL) mode:
 
    Convert KEY to CREATE INDEX; remove size limit:
    KEY name ("COLUMN_NAME"(20)) -> CREATE INDEX name ON table ("COLUMN_NAME").
+
+
+Installers.
