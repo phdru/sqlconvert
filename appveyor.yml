@@ -16,7 +16,13 @@ cache:
 # Match travis
 clone_depth: 50
 
+services:
+  - postgresql
+
 environment:
+  PGUSER: "postgres"
+  PGPASSWORD: "Password12!"
+
   matrix:
     - PYTHON_HOME: "C:\\Python27"
       PYTHON_VERSION: "2.7"
@@ -50,6 +56,38 @@ environment:
       PYTHON_VERSION: "3.6"
       PYTHON_ARCH: "64"
       TOX_ENV: "py36"
+    - PYTHON_HOME: "C:\\Python27"
+      PYTHON_VERSION: "2.7"
+      PYTHON_ARCH: "32"
+      TOX_ENV: "py27-postgres-w32"
+    - PYTHON_HOME: "C:\\Python27-x64"
+      PYTHON_VERSION: "2.7"
+      PYTHON_ARCH: "64"
+      TOX_ENV: "py27-postgres-w32"
+    - PYTHON_HOME: "C:\\Python34"
+      PYTHON_VERSION: "3.4"
+      PYTHON_ARCH: "32"
+      TOX_ENV: "py34-postgres-w32"
+    - PYTHON_HOME: "C:\\Python34-x64"
+      PYTHON_VERSION: "3.4"
+      PYTHON_ARCH: "64"
+      TOX_ENV: "py34-postgres-w32"
+    - PYTHON_HOME: "C:\\Python35"
+      PYTHON_VERSION: "3.5"
+      PYTHON_ARCH: "32"
+      TOX_ENV: "py35-postgres-w32"
+    - PYTHON_HOME: "C:\\Python35-x64"
+      PYTHON_VERSION: "3.5"
+      PYTHON_ARCH: "64"
+      TOX_ENV: "py35-postgres-w32"
+    - PYTHON_HOME: "C:\\Python36"
+      PYTHON_VERSION: "3.6"
+      PYTHON_ARCH: "32"
+      TOX_ENV: "py36-postgres-w32"
+    - PYTHON_HOME: "C:\\Python36-x64"
+      PYTHON_VERSION: "3.6"
+      PYTHON_ARCH: "64"
+      TOX_ENV: "py36-postgres-w32"
     - PYTHON_HOME: "C:\\Python27"
       PYTHON_VERSION: "2.7"
       PYTHON_ARCH: "32"
@@ -93,7 +131,7 @@ environment:
 
 install:
   # Ensure we use the right python version
-  - "SET PATH=%PYTHON_HOME%;%PYTHON_HOME%\\Scripts;%PATH%"
+  - "SET PATH=%PYTHON_HOME%;%PYTHON_HOME%\\Scripts;C:\\Program Files\\PostgreSQL\\9.5\\bin;%PATH%"
   - "SET TOXPYTHON=%PYTHON_HOME%\\python.exe"
   - "python --version"
   - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
