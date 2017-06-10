@@ -1,7 +1,7 @@
 News
 ====
 
-Version 0.2.2 (2017-06-??)
+Version 0.2.2 (2017-06-10)
 --------------------------
 
 * Use tox instead of tests/Makefile.
