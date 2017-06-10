@@ -4,15 +4,11 @@ all:
 	@echo "Nothing to be done for 'all'"
 
 .PHONY: release
-release: tests flake8 docs distr
+release: tests docs distr
 
 .PHONY: distr
 distr:
 	./mk-distr
-
-.PHONY: flake8
-flake8:
-	flake8
 
 .PHONY: docs
 docs:
@@ -20,7 +16,7 @@ docs:
 
 .PHONY: test
 test:
-	$(MAKE) -C tests
+	tox
 
 .PHONY: tests
 tests: test

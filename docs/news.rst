@@ -4,6 +4,8 @@ News
 Version 0.2.2 (2017-06-??)
 --------------------------
 
+* Use tox instead of tests/Makefile.
+
 * Test at Travis and AppVeyor with Postgres.
 
 Version 0.2.1 (2017-05-01)
