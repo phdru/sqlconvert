@@ -1,6 +1,12 @@
 News
 ====
 
+Version 0.2.3 (2017-06-??)
+--------------------------
+
+* Use remove-old-files.py from ppu to cleanup pip cache
+  at Travis and AppVeyor.
+
 Version 0.2.2 (2017-06-10)
 --------------------------
 

@@ -136,10 +136,13 @@ install:
   - "python --version"
   - "python -c \"import struct; print(struct.calcsize('P') * 8)\""
   - "pip --version"
-  - "pip install tox"
+  - "pip install tox ppu"
 
 # No build step - we don't have C extensions
 build: false
 
 test_script:
   - "tox -e %TOX_ENV%"
+
+after_test:
+  - "remove-old-files.py -o 180 %LOCALAPPDATA%\\pip\\Cache"
