@@ -21,8 +21,5 @@ done
 find build -name '*.py[co]' -delete &&
 python setup.py bdist_wheel --universal &&
 
-version=`python setup.py --version`
-twine register dist/sqlconvert-"$version".tar.gz &&
 twine upload --sign dist/* &&
-
 exec rm -rf build dist sqlconvert.egg-info
