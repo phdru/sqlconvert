@@ -58,7 +58,6 @@ setup(name='sqlconvert',
           'Programming Language :: Python :: 3.6',
       ],
       packages=['sqlconvert'],
-      package_data={},
       scripts=['scripts/mysql2sql'],
       **kw
       )
