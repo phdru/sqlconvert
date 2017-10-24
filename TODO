@@ -1,25 +1,28 @@
 In SQLite/Postgres (non-MySQL) mode:
 
-   Replace AUTO_INCREMENT columns with INTEGER PRIMARY KEY for SQLite or
-   serial for Postgres.
+   In CREATE TABLE:
 
-   Change TINYINT to SMALLINT. Remove UNSIGNED.
-   For Postgres replace int with INTEGER.
+      Replace AUTO_INCREMENT columns with INTEGER PRIMARY KEY for SQLite or
+      serial for Postgres.
 
-   Remove CHARACTER SET, COLLATE and COMMENT from column definitions.
+      Change TINYINT to SMALLINT. Remove UNSIGNED.
+      For Postgres replace int with INTEGER.
 
-   Remove KEY and inde name from UNIQUE KEY:
-   UNIQUE KEY name (columns) -> UNIQUE (columns).
+      Remove CHARACTER SET, COLLATE and COMMENT from column definitions.
 
-   Change multicolumn PRIMARY KEY to UNIQUE.
+      Remove KEY and index name from UNIQUE KEY:
+      UNIQUE KEY name (columns) -> UNIQUE (columns).
 
-   Remove table options like ENGINE, AUTO_INCREMENT, CHARSET, etc:
-   CREATE TABLE name (column_definitions) table_options.
+      Change multicolumn PRIMARY KEY to UNIQUE.
+
+      Remove table options like ENGINE, AUTO_INCREMENT, CHARSET, etc:
+      CREATE TABLE name (column_definitions) table_options.
+
+      Convert KEY to CREATE INDEX; remove size limit:
+         KEY name ("COLUMN_NAME"(20)) ->
+         CREATE INDEX name ON table ("COLUMN_NAME").
 
    Remove LOCK/UNLOCK TABLES.
-
-   Convert KEY to CREATE INDEX; remove size limit:
-   KEY name ("COLUMN_NAME"(20)) -> CREATE INDEX name ON table ("COLUMN_NAME").
 
 
 Installers.
