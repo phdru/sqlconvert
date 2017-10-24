@@ -131,7 +131,7 @@ def split_ext_insert(statement):
         if i == len(values_tokens) - 1:  # Last but one statement
             # Insert newlines only between split statements but not after
             new_lines = []
-        # The statemnt sets `parent` attribute of the every token to self
+        # The statement sets `parent` attribute of the every token to self
         # but we don't care.
         statement = Statement(insert_tokens + [values] +
                               end_tokens + new_lines)
