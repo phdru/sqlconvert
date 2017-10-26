@@ -71,11 +71,14 @@ def unescape_strings(token_list):
             token.normalized = token.value = value
 
 
-def is_insert(statement):
+def get_DML_type(statement):
     for token in statement.tokens:
         if is_comment_or_space(token):
             continue
-        return (token.ttype is T.DML) and (token.normalized == 'INSERT')
+        if (token.ttype is T.DML):
+            return token.normalized
+        break
+    raise ValueError("Not a DML statement")
 
 
 def split_ext_insert(statement):
@@ -143,7 +146,11 @@ def process_statement(statement, quoting_style='sqlite'):
     unescape_strings(statement)
     remove_directive_tokens(statement)
     escape_strings(statement, quoting_style)
-    if is_insert(statement):
+    try:
+        is_insert = get_DML_type(statement) == 'INSERT'
+    except ValueError:
+        is_insert = False
+    if is_insert:
         for statement in split_ext_insert(statement):
             yield statement
     else:
