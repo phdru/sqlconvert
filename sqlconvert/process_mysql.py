@@ -141,11 +141,11 @@ def split_ext_insert(statement):
         yield statement
 
 
-def process_statement(statement, quoting_style='sqlite'):
+def process_statement(statement, dbname='sqlite'):
     requote_names(statement)
     unescape_strings(statement)
     remove_directive_tokens(statement)
-    escape_strings(statement, quoting_style)
+    escape_strings(statement, dbname)
     try:
         is_insert = get_DML_type(statement) == 'INSERT'
     except ValueError:
