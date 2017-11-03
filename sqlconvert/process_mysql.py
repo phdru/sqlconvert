@@ -147,10 +147,10 @@ def process_statement(statement, dbname='sqlite'):
     remove_directive_tokens(statement)
     escape_strings(statement, dbname)
     try:
-        is_insert = get_DML_type(statement) == 'INSERT'
+        dml_type = get_DML_type(statement)
     except ValueError:
-        is_insert = False
-    if is_insert:
+        dml_type = 'UNKNOWN'
+    if dml_type == 'INSERT':
         for statement in split_ext_insert(statement):
             yield statement
     else:
