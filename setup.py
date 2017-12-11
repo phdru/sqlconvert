@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import sys
 from imp import load_source
 from os.path import abspath, dirname, join
 
@@ -18,21 +17,15 @@ from sqlconvert_version import __version__  # noqa
 
 kw = {}
 if is_setuptools:
-    if (sys.version_info[:2] == (2, 7)):
-        PY2 = True
-    elif (sys.version_info[0] == 3) and (sys.version_info[:2] >= (3, 4)):
-        PY2 = False
-    else:
-        raise ImportError("sqlconvert requires Python 2.7 or 3.4+")
-
     kw['install_requires'] = [
         'sqlparse',
-        'm_lib.defenc>=1.0', 'm_lib>=3.1',
+        'm_lib>=3.1',
+        'm_lib.defenc>=1.0',
+        'SQLObject>=2.2.1; python_version=="2.7"',
+        'SQLObject>=3.0.0; python_version>="3.4"',
     ]
-    if PY2:
-        kw['install_requires'].append('SQLObject>=2.2.1')
-    else:
-        kw['install_requires'].append('SQLObject>=3.0.0')
+
+    kw['python_requires'] = '>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*'
 
 setup(name='sqlconvert',
       version=__version__,
