@@ -6,7 +6,7 @@ System-wide
 
 ::
 
-    sudo pip install --install-option='-O2' sqlconvert
+    sudo pip install sqlconvert
 
 
 User mode
@@ -14,14 +14,14 @@ User mode
 
 ::
 
-    pip install --user --install-option='-O2' sqlconvert
+    pip install --user sqlconvert
 
 Virtual envs
 ------------
 
 ::
 
-    pip install --install-option='-O2' sqlconvert
+    pip install sqlconvert
 
 Installation from sources
 =========================
@@ -31,14 +31,14 @@ command:
 
 ::
 
-    sudo python setup.py install -O2
+    sudo python setup.py install
 
 If you don't want to install it system-wide you can install it in your
 home directory; run run the following command:
 
 ::
 
-    python setup.py install --user -O2
+    python setup.py install --user
 
 Option '--user' installs sqlconvert into
 $HOME/.local/lib/python$MAJOR.$MINOR/site-packages/ where python finds it
