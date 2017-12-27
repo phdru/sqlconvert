@@ -22,3 +22,4 @@ standard SQL to load at least to PostgreSQL or SQLite.
 | Git repo:      http://git.phdru.name/sqlconvert.git/
 | GitHub repo:   https://github.com/phdru/sqlconvert
 | Issue tracker: https://github.com/phdru/sqlconvert/issues
+| PyPI:          https://pypi.python.org/pypi/sqlconvert
