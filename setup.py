@@ -11,9 +11,7 @@ except ImportError:
     is_setuptools = False
 
 versionpath = join(abspath(dirname(__file__)), 'sqlconvert', '__version__.py')
-load_source('sqlconvert_version', versionpath)
-# Ignore: E402 module level import not at top of file
-from sqlconvert_version import __version__  # noqa
+sqlconvert_version = load_source('sqlconvert_version', versionpath)
 
 kw = {}
 if is_setuptools:
@@ -28,7 +26,7 @@ if is_setuptools:
     kw['python_requires'] = '>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*'
 
 setup(name='sqlconvert',
-      version=__version__,
+      version=sqlconvert_version.__version__,
       description='Broytman sqlconvert',
       long_description=open('README.rst', 'rU').read(),
       author='Oleg Broytman',
