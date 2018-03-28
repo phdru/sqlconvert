@@ -2,7 +2,7 @@ SQL converter.
 
 Author: Oleg Broytman <phd@phdru.name>.
 
-Copyright (C) 2016-2017 PhiloSoft Design.
+Copyright (C) 2016-2018 PhiloSoft Design.
 
 License: GPL.
 
