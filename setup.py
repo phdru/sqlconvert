@@ -14,6 +14,16 @@ setup(name='sqlconvert',
       author='Oleg Broytman',
       author_email='phd@phdru.name',
       url='http://phdru.name/Software/Python/sqlconvert/',
+      project_urls={
+          'Homepage': 'http://phdru.name/Software/Python/sqlconvert/',
+          'Documentation':
+              'http://phdru.name/Software/Python/sqlconvert/docs/',
+          'Download': 'https://pypi.python.org/pypi/sqlconvert/%s'
+          % sqlconvert_version.__version__,
+          'Git repo': 'http://git.phdru.name/sqlconvert.git/',
+          'Github repo': 'https://github.com/phdru/sqlconvert',
+          'Issue tracker': 'https://github.com/phdru/sqlconvert/issues',
+      },
       license='GPL',
       keywords=['sql', 'mysql', 'postgresql', 'sqlite', 'insert'],
       platforms='Any',
