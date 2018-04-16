@@ -20,7 +20,7 @@ setup(
         'Homepage': 'http://phdru.name/Software/Python/sqlconvert/',
         'Documentation':
             'http://phdru.name/Software/Python/sqlconvert/docs/',
-        'Download': 'https://pypi.python.org/pypi/sqlconvert/%s'
+        'Download': 'https://pypi.org/project/sqlconvert/%s/'
         % sqlconvert_version.__version__,
         'Git repo': 'http://git.phdru.name/sqlconvert.git/',
         'Github repo': 'https://github.com/phdru/sqlconvert',
