@@ -15,14 +15,14 @@ setup(
     long_description_content_type="text/x-rst",
     author='Oleg Broytman',
     author_email='phd@phdru.name',
-    url='http://phdru.name/Software/Python/sqlconvert/',
+    url='https://phdru.name/Software/Python/sqlconvert/',
     project_urls={
-        'Homepage': 'http://phdru.name/Software/Python/sqlconvert/',
+        'Homepage': 'https://phdru.name/Software/Python/sqlconvert/',
         'Documentation':
-            'http://phdru.name/Software/Python/sqlconvert/docs/',
+            'https://phdru.name/Software/Python/sqlconvert/docs/',
         'Download': 'https://pypi.org/project/sqlconvert/%s/'
         % sqlconvert_version.__version__,
-        'Git repo': 'http://git.phdru.name/sqlconvert.git/',
+        'Git repo': 'https://git.phdru.name/sqlconvert.git/',
         'Github repo': 'https://github.com/phdru/sqlconvert',
         'Issue tracker': 'https://github.com/phdru/sqlconvert/issues',
     },
