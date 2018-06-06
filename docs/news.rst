@@ -7,6 +7,10 @@ Version 0.2.3 (2017-06-??)
 * Use remove-old-files.py from ppu to cleanup pip cache
   at Travis and AppVeyor.
 
+* Install psycopg2 from `psycopg2-binary`_ package.
+
+.. _`psycopg2-binary`: https://pypi.org/project/psycopg2-binary/
+
 Version 0.2.2 (2017-06-10)
 --------------------------
 
