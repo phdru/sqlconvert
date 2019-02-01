@@ -1,8 +1,10 @@
 News
 ====
 
-Version 0.2.3 (2017-06-??)
+Version 0.2.3 (2019-02-01)
 --------------------------
+
+* Python 3.7.
 
 * Use remove-old-files.py from ppu to cleanup pip cache
   at Travis and AppVeyor.
