@@ -4,28 +4,21 @@ from os.path import abspath, dirname, join
 from setuptools import setup
 import sys
 
+versionpath = join(abspath(dirname(__file__)), 'sqlconvert', '__version__.py')
+sqlconvert_version = {}
+
 if sys.version_info[:2] == (2, 7):
-    from imp import load_source
+    execfile(versionpath, sqlconvert_version)
 
 elif sys.version_info >= (3, 4):
-    from importlib.machinery import SourceFileLoader
-    import types
-
-    def load_source(fullname, path):
-        loader = SourceFileLoader(fullname, path)
-        loaded = types.ModuleType(loader.name)
-        loader.exec_module(loaded)
-        return loaded
+    exec(open(versionpath, 'rU').read(), sqlconvert_version)
 
 else:
     raise ImportError("sqlconvert requires Python 2.7 or 3.4+")
 
-versionpath = join(abspath(dirname(__file__)), 'sqlconvert', '__version__.py')
-sqlconvert_version = load_source('sqlconvert_version', versionpath)
-
 setup(
     name='sqlconvert',
-    version=sqlconvert_version.__version__,
+    version=sqlconvert_version['__version__'],
     description='Broytman sqlconvert',
     long_description=open('README.rst', 'rU').read(),
     long_description_content_type="text/x-rst",
@@ -37,7 +30,7 @@ setup(
         'Documentation':
             'https://phdru.name/Software/Python/sqlconvert/docs/',
         'Download': 'https://pypi.org/project/sqlconvert/%s/'
-        % sqlconvert_version.__version__,
+        % sqlconvert_version['__version__'],
         'Git repo': 'https://git.phdru.name/sqlconvert.git/',
         'Github repo': 'https://github.com/phdru/sqlconvert',
         'Issue tracker': 'https://github.com/phdru/sqlconvert/issues',
