@@ -1,6 +1,6 @@
 
 from sqlparse.sql import Comment, Function, Identifier, Parenthesis, \
-    Statement, Token
+    Statement, Token, Values
 from sqlparse import tokens as T
 from .process_tokens import escape_strings, is_comment_or_space
 
@@ -110,6 +110,14 @@ def split_ext_insert(statement):
                 expected = 'VALUES'
                 continue
         elif expected == 'VALUES':
+            if isinstance(token, Values):
+                for subtoken in token.tokens:
+                    if isinstance(subtoken, Parenthesis):
+                        values_tokens.append(subtoken)
+                insert_tokens.append(Token(T.Keyword, 'VALUES'))
+                insert_tokens.append(Token(T.Whitespace, ' '))
+                expected = 'VALUES_OR_SEMICOLON'
+                continue
             if (token.ttype is T.Keyword) and (token.normalized == 'VALUES'):
                 insert_tokens.append(token)
                 expected = 'VALUES_OR_SEMICOLON'
