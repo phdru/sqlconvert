@@ -29,7 +29,7 @@ def is_directive_statement(statement):
 
 
 def remove_directive_tokens(statement):
-    """Remove /\*! directives \*/ from the first-level"""  # noqa: W605: \*
+    """Remove /*! directives */ from the first-level"""
     new_tokens = []
     for token in statement.tokens:
         if _is_directive_token(token):
