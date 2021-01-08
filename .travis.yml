@@ -30,6 +30,8 @@ matrix:
     env: TOXENV=py37
   - python: "3.8"
     env: TOXENV=py38
+  - python: "3.9"
+    env: TOXENV=py39
   - python: "2.7"
     env: TOXENV=py27-postgres
   - python: "3.4"
@@ -42,6 +44,8 @@ matrix:
     env: TOXENV=py37-postgres
   - python: "3.8"
     env: TOXENV=py38-postgres
+  - python: "3.9"
+    env: TOXENV=py39-postgres
   - python: "2.7"
     env: TOXENV=py27-sqlite
   - python: "3.4"
@@ -54,10 +58,12 @@ matrix:
     env: TOXENV=py37-sqlite
   - python: "3.8"
     env: TOXENV=py38-sqlite
+  - python: "3.9"
+    env: TOXENV=py39-sqlite
   - python: "2.7"
     env: TOXENV=py27-flake8
-  - python: "3.8"
-    env: TOXENV=py38-flake8
+  - python: "3.9"
+    env: TOXENV=py39-flake8
 
 install:
   - travis_retry pip install --upgrade "pip<21" "setuptools<44" tox ppu
