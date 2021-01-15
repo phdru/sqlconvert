@@ -20,8 +20,6 @@ matrix:
   include:
   - python: "2.7"
     env: TOXENV=py27
-  - python: "3.4"
-    env: TOXENV=py34
   - python: "3.5"
     env: TOXENV=py35
   - python: "3.6"
@@ -34,8 +32,6 @@ matrix:
     env: TOXENV=py39
   - python: "2.7"
     env: TOXENV=py27-postgres
-  - python: "3.4"
-    env: TOXENV=py34-postgres
   - python: "3.5"
     env: TOXENV=py35-postgres
   - python: "3.6"
@@ -48,8 +44,6 @@ matrix:
     env: TOXENV=py39-postgres
   - python: "2.7"
     env: TOXENV=py27-sqlite
-  - python: "3.4"
-    env: TOXENV=py34-sqlite
   - python: "3.5"
     env: TOXENV=py35-sqlite
   - python: "3.6"
@@ -66,7 +60,7 @@ matrix:
     env: TOXENV=py39-flake8
 
 install:
-  - travis_retry pip install --upgrade "pip<21" "setuptools<44" tox ppu
+  - travis_retry pip install --upgrade "pip<21" "setuptools<44" "tox>=3.15" ppu
 
 script:
   - tox
