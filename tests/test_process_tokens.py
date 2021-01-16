@@ -8,8 +8,8 @@ from sqlconvert.process_tokens import is_newline_statement, StatementGrouper
 
 
 def test_newline_statement():
-    parsed = parse("\n")[0]
-    assert is_newline_statement(parsed)
+    parsed = parse("\n")
+    assert not parsed or is_newline_statement(parsed[0])
 
 
 def test_encoding():

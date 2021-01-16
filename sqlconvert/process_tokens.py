@@ -54,6 +54,8 @@ class StatementGrouper(object):
 
     def process_lines(self):
         statements = parse(''.join(self.lines), encoding=self.encoding)
+        if not statements:
+            return
         last_stmt = statements[-1]
         for i in xrange(len(last_stmt.tokens) - 1, 0, -1):
             token = last_stmt.tokens[i]
