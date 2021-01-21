@@ -15,10 +15,10 @@ def process_lines(*lines):
             print("----- -----")
             if find_error(statement):
                 print("ERRORS IN QUERY")
-            for statement in process_statement(statement):
-                print_tokens(statement, encoding='utf-8')
+            for _statement in process_statement(statement):
+                print_tokens(_statement, encoding='utf-8')
                 print()
-                statement._pprint_tree()
+                _statement._pprint_tree()
             print("-----/-----")
     tokens = grouper.close()
     if tokens:
