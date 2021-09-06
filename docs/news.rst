@@ -6,6 +6,8 @@ Version 0.3.0 (2021-??-??)
 
 * Python 3.8, Python 3.9.
 
+* GitHub Actions.
+
 Version 0.2.3 (2019-02-01)
 --------------------------
 
