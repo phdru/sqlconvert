@@ -8,6 +8,8 @@ Version 0.3.0 (2021-??-??)
 
 * GitHub Actions.
 
+* Stop testing at Travis CI.
+
 Version 0.2.3 (2019-02-01)
 --------------------------
 
