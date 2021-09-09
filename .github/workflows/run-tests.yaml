@@ -13,6 +13,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      # Use preinstalled PostgreSQL
+      - name: Start PostgreSQL on Ubuntu
+        run: |
+          sudo systemctl start postgresql
+          pg_isready
+      - name: Create user
+        run: |
+          echo 'localhost:*:test:runner:test' > ~/.pgpass
+          chmod u=rw,go= ~/.pgpass
+          sudo -u postgres psql --command="CREATE USER runner CREATEDB ENCRYPTED PASSWORD 'test'"
+
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
@@ -35,8 +47,8 @@ jobs:
           pyver = '%d%d' % tuple(sys.version_info[:2])
           toxenv = 'py%s' % pyver
           toxenv += ',py%s-sqlite' % pyver
-          if os.name == 'posix':
-            toxenv += ',py%s-flake8' % pyver
+          toxenv += ',py%s-postgres' % pyver
+          toxenv += ',py%s-flake8' % pyver
           with open(os.environ['GITHUB_ENV'], 'a') as f:
             f.write('TOXENV=' + toxenv + '\n')
         shell: python
