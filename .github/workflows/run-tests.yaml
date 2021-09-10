@@ -14,17 +14,7 @@ jobs:
 
     steps:
 
-      # Use preinstalled PostgreSQL
-      - name: Start PostgreSQL on Ubuntu
-        run: |
-          sudo systemctl start postgresql
-          pg_isready
-      - name: Create user
-        run: |
-          echo 'localhost:*:test:runner:test' > ~/.pgpass
-          chmod u=rw,go= ~/.pgpass
-          sudo -u postgres psql --command="CREATE USER runner CREATEDB ENCRYPTED PASSWORD 'test'"
-
+      - uses: ankane/setup-postgres@v1
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
