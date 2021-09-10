@@ -7,14 +7,31 @@ jobs:
 
     strategy:
       matrix:
+        os: [ubuntu-latest, windows-latest]
         python-version: [2.7, 3.5, 3.6, 3.7, 3.8, 3.9]
+        include:
+        - os: ubuntu-latest
+          os-name: Linux
+          pip-cache-path: ~/.cache/pip
+        - os: windows-latest
+          os-name: w32
+          pip-cache-path: ~\AppData\Local\pip\Cache
 
-    name: Python ${{ matrix.python-version }}
-    runs-on: ubuntu-latest
+    name: Python ${{ matrix.python-version }} @ ${{ matrix.os-name }}
+    runs-on: ${{ matrix.os }}
 
     steps:
 
       - uses: ankane/setup-postgres@v1
+      - name: Setup Postgres user
+        run: |
+          sudo -u postgres psql --command="ALTER USER runner CREATEDB PASSWORD 'test'"
+        if: ${{ runner.os == 'Linux' }}
+      - name: Setup Postgres user
+        run: |
+          psql --command="CREATE USER runner CREATEDB PASSWORD 'test'"
+        if: ${{ runner.os == 'Windows' }}
+
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
@@ -22,8 +39,7 @@ jobs:
       - name: Cache pip
         uses: actions/cache@v2
         with:
-          # This path is specific to Linux/Unix
-          path: ~/.cache/pip
+          path: ${{ matrix.pip-cache-path }}
           key: ${{ runner.os }}-pip
       - name: Install dependencies
         run: |
@@ -37,10 +53,16 @@ jobs:
           pyver = '%d%d' % tuple(sys.version_info[:2])
           toxenv = 'py%s' % pyver
           toxenv += ',py%s-sqlite' % pyver
+          if os.name == 'nt':
+            toxenv += '-w32'
           toxenv += ',py%s-postgres' % pyver
-          toxenv += ',py%s-flake8' % pyver
+          if os.name == 'posix':
+            toxenv += ',py%s-flake8' % pyver
+          elif os.name == 'nt':
+            toxenv += '-w32'
           with open(os.environ['GITHUB_ENV'], 'a') as f:
             f.write('TOXENV=' + toxenv + '\n')
+            f.write('PGPASSWORD=test\n')
         shell: python
       - name: Run tox
         run: |
