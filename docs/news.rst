@@ -10,6 +10,8 @@ Version 0.3.0 (2021-??-??)
 
 * Stop testing at Travis CI.
 
+* Stop testing at AppVeyor.
+
 Version 0.2.3 (2019-02-01)
 --------------------------
 
