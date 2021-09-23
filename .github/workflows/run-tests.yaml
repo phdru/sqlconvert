@@ -22,6 +22,7 @@ jobs:
 
     steps:
 
+      # Setup PostgreSQL
       - uses: ankane/setup-postgres@v1
       - name: Setup Postgres user
         run: |
@@ -32,6 +33,7 @@ jobs:
           psql --command="CREATE USER runner CREATEDB PASSWORD 'test'"
         if: ${{ runner.os == 'Windows' }}
 
+      # Setup Python/pip
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
@@ -41,6 +43,8 @@ jobs:
         with:
           path: ${{ matrix.pip-cache-path }}
           key: ${{ runner.os }}-pip
+
+      # Setup tox
       - name: Install dependencies
         run: |
           python --version
@@ -64,6 +68,7 @@ jobs:
             f.write('TOXENV=' + toxenv + '\n')
             f.write('PGPASSWORD=test\n')
         shell: python
+
       - name: Run tox
         run: |
           python -c "import os; print(os.environ['TOXENV'])"
