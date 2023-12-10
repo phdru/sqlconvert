@@ -2,8 +2,12 @@
 from sqlparse.sql import Comment
 from sqlobject.converters import sqlrepr
 from sqlparse import parse
-from sqlparse.compat import PY3
 from sqlparse import tokens as T
+
+try:
+    xrange
+except NameError:
+    xrange = range
 
 
 def find_error(token_list):
@@ -34,10 +38,6 @@ def escape_strings(token_list, dbname):
             value = token.value[1:-1]  # unquote by removing apostrophes
             value = sqlrepr(value, dbname)
             token.normalized = token.value = value
-
-
-if PY3:
-    xrange = range
 
 
 class StatementGrouper(object):

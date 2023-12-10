@@ -6,13 +6,17 @@ from io import open
 import os
 import sys
 
-from sqlparse.compat import text_type
 from sqlconvert.print_tokens import print_tokens
 from sqlconvert.process_mysql import is_directive_statement, process_statement
 from sqlconvert.process_tokens import is_newline_statement, StatementGrouper
 
 from m_lib.defenc import default_encoding
 from m_lib.pbar.tty_pbar import ttyProgressBar
+
+try:
+    text_type = unicode
+except NameError:
+    text_type = str
 
 
 def get_fsize(fp):
