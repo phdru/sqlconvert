@@ -4,7 +4,7 @@ News
 Version 0.3.1 (in development)
 ------------------------------
 
-* Python 3.10, 3.11, 3.12.
+* Python 3.10, 3.11, 3.12, 3.13.
 
 * CI(GHActions): Install all Python and PyPy versions from ``conda-forge``.
 
