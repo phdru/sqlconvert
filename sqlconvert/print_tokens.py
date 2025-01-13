@@ -18,4 +18,6 @@ def print_tokens(token_list, outfile=sys.stdout, encoding=None):
 
 
 def tlist2str(token_list):
-    return u''.join(token.normalized for token in token_list.flatten())
+    return u''.join(
+        token.normalized for token in token_list.flatten()
+    ).replace('  ', ' ')
